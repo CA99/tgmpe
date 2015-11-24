@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TGM Portable Edition</title>
+	<meta http-equiv="cache-control" content="private">
+	<meta http-equiv="cache-control" content="max-age=0" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="cache-control" content="no-store">
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="robots" content="noindex, nofollow" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0" />
+	<link rel="stylesheet" href="lib/foundation-6/css/foundation.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/styles.css" />
+	<script type="text/javascript" src="lib/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="lib/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="lib/jquery.ui.touch-punch.min.js"></script>
+	<script type="text/javascript" src="lib/handlebars-v4.0.4.min.js"></script>
+	<script type="text/javascript" src="lib/knockout-3.3.0.js"></script>
+	<script type="text/javascript" src="lib/numeral.min.js"></script>
+	<script type="text/javascript" src="lib/timer.jquery.js"></script>
+	<script type="text/javascript" src="lib/helpers.js"></script>
+	<script type="text/javascript" src="js/global_data.js"></script>
+	<script type="text/javascript" src="js/dom_manip.js"></script>
+	<script type="text/javascript" src="js/create_game.js"></script>
+	<script type="text/javascript" src="js/in_game.js"></script>
+</head>
+<body>
+	<header class="top-level centered">
+		<h1>Tagger Games Manager</h1>
+	</header>
+	<main class="top-level">
+		<h1 class="message">Javascript failure. This page requires Javascript to be enabled and may not support all browsers.</h1>
+		<section id="create_game" class="full-row mid">
+			<form id="create_game_form">
+				<h2 class="section-header">Game Settings &nbsp;<i class="fa fa-chevron-down"></i></h2>
+				<label class="block-level">
+					<h5>Score Limit</h5>
+					<input type="number" min="1" value="1" name="score_limit" id="score_limit" />
+				</label>
+				<label class="block-level">
+					<h5>Time Limit (HH:MM:SS)</h5>
+					<div class="time-display">
+						<select name="timelimit_hrs" id="timelimit_hrs">
+							<option value="0" selected>00</option>
+							<option value="1">01</option>
+							<option value="2">02</option>
+							<option value="3">03</option>
+							<option value="4">04</option>
+							<option value="5">05</option>
+							<option value="6">06</option>
+							<option value="7">07</option>
+							<option value="8">08</option>
+							<option value="9">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+						</select>
+						<strong>:</strong>
+						<select name="timelimit_mins" id="timelimit_mins">
+							<option value="0">00</option>
+							<option value="1">01</option>
+							<option value="2">02</option>
+							<option value="3">03</option>
+							<option value="4">04</option>
+							<option value="5">05</option>
+							<option value="6">06</option>
+							<option value="7">07</option>
+							<option value="8">08</option>
+							<option value="9">09</option>
+							<option value="10" selected>10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+							<option value="24">24</option>
+							<option value="25">25</option>
+							<option value="26">26</option>
+							<option value="27">27</option>
+							<option value="28">28</option>
+							<option value="29">29</option>
+							<option value="30">30</option>
+							<option value="31">31</option>
+							<option value="32">32</option>
+							<option value="33">33</option>
+							<option value="34">34</option>
+							<option value="35">35</option>
+							<option value="36">36</option>
+							<option value="37">37</option>
+							<option value="38">38</option>
+							<option value="39">39</option>
+							<option value="40">40</option>
+							<option value="40">40</option>
+							<option value="41">41</option>
+							<option value="42">42</option>
+							<option value="43">43</option>
+							<option value="44">44</option>
+							<option value="45">45</option>
+							<option value="46">46</option>
+							<option value="47">47</option>
+							<option value="48">48</option>
+							<option value="49">49</option>
+							<option value="50">50</option>
+							<option value="51">51</option>
+							<option value="52">52</option>
+							<option value="53">53</option>
+							<option value="54">54</option>
+							<option value="55">55</option>
+							<option value="56">56</option>
+							<option value="57">57</option>
+							<option value="58">58</option>
+							<option value="59">59</option>
+						</select>
+						<strong>:</strong>
+						<select name="timelimit_secs" id="timelimit_secs">
+							<option value="0">00</option>
+							<option value="1">01</option>
+							<option value="2">02</option>
+							<option value="3">03</option>
+							<option value="4">04</option>
+							<option value="5">05</option>
+							<option value="6">06</option>
+							<option value="7">07</option>
+							<option value="8">08</option>
+							<option value="9">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+							<option value="24">24</option>
+							<option value="25">25</option>
+							<option value="26">26</option>
+							<option value="27">27</option>
+							<option value="28">28</option>
+							<option value="29">29</option>
+							<option value="30">30</option>
+							<option value="31">31</option>
+							<option value="32">32</option>
+							<option value="33">33</option>
+							<option value="34">34</option>
+							<option value="35">35</option>
+							<option value="36">36</option>
+							<option value="37">37</option>
+							<option value="38">38</option>
+							<option value="39">39</option>
+							<option value="40">40</option>
+							<option value="40">40</option>
+							<option value="41">41</option>
+							<option value="42">42</option>
+							<option value="43">43</option>
+							<option value="44">44</option>
+							<option value="45">45</option>
+							<option value="46">46</option>
+							<option value="47">47</option>
+							<option value="48">48</option>
+							<option value="49">49</option>
+							<option value="50">50</option>
+							<option value="51">51</option>
+							<option value="52">52</option>
+							<option value="53">53</option>
+							<option value="54">54</option>
+							<option value="55">55</option>
+							<option value="56">56</option>
+							<option value="57">57</option>
+							<option value="58">58</option>
+							<option value="59">59</option>
+						</select>
+					</div>
+				</label>
+
+				<label class="block-level">
+					<h5>Objective Type</h5>
+					<select name="obj_type" class="obj_type" id="obj_type">
+						<option value="outpost">Outpost</option>
+						<option value="bomb">Bomb</option>
+					</select>
+				</label>
+				<div class="block-level">
+					<h5>Usable By Teams</h5>
+					<ul>
+						<li>
+							<label>
+								<input type="radio" name="obj_teams" id="obj_teams_red" value="red" />
+								<strong>&nbsp;Red Team</strong>
+							</label>
+						</li>
+						<li>
+							<label>
+								<input type="radio" name="obj_teams" id="obj_teams_blue" value="blue" />
+								<strong>&nbsp;Blue Team</strong>
+							</label>
+						</li>
+						<li>
+							<label>
+								<input type="radio" name="obj_teams" id="obj_teams_all" value="blue" checked />
+								<strong>&nbsp;All Teams</strong>
+							</label>
+						</li>
+					</ul>
+				</div>
+
+				<article class="full-row mid-grid obj-settings" id="outpost_settings">
+				</article>
+
+				<article class="full-row mid-grid obj-settings" id="bomb_settings">
+				</article>
+				<div class="full-row centered">
+					<button class="button large" id="start_game">GO!</button>
+				</div>
+			</form>
+		</section>
+
+		<section id="in_game" class="full-row">
+			<h2 class="section-header">Game &nbsp;<i class="fa fa-chevron-down"></i></h2>
+			<article class="full-row mid-grid">
+				<div class="block-level">
+					<h4 class="controls">
+						<i class="fa fa-arrow-left"></i>
+						<i class="fa fa-play"></i>
+						<i class="fa fa-pause"></i>
+						<i class="fa fa-stop"></i>
+					</h4>
+				</div>
+			</article>
+			<article class="full-row mid-grid">
+				<div class="block-level">
+					<h4>Time</h4>
+					<div class="time-display">
+						<h3>00:00:00</h3>
+					</div>
+				</div>
+				<div class="block-level">
+					<h4>Score</h4>
+					<h3>Red Team: <span>0</span></h3>
+					<h3>Blue Team: <span>0</span></h3>
+				</div>
+			</article>
+			<article class="full-row mid-grid">
+				<div class="block-level">
+					<h3>Outpost</h3>
+					<div class="prog-meter outpost"></div>
+					<button class="button large">Red Team Capture</button>
+					<button class="button large">Blue Team Capture</button>
+				</div>
+			</article>
+			<article class="full-row mid-grid">
+				<div class="block-level">
+					<h3>Bomb</h3>
+					<div class="prog-meter bomb"></div>
+					<button class="button large">Arm Bomb</button>
+					<button class="button large">Disarm Bomb</button>
+				</div>
+			</article>
+		</section>
+	</main>
+</body>
+</html>
+
+<script id="tmpl_outpost_settings" type="text/x-handlebars-template">
+	<h4 class="full-row">Outpost Settings</h4>
+	<label class="block-level">
+		<h5>Starting Team</h5>
+		<select name="outpost_start_team" id="outpost_start_team">
+			<option value="neutral">Neutral</option>
+			<option value="red">Red Team</option>
+			<option value="blue">Blue Team</option>
+		</select>
+	</label>
+	<label class="block-level">
+		<h5>Time to Capture (Seconds)</h5>
+		<input type="number" value="10" name="outpost_timecap"
+		id="outpost_timecap" />
+	</label>
+	<div class="full-row">
+		<ul>
+			<li><label class="block-level">
+				<input type="checkbox"
+				name="outpost_cap_once"
+				id="outpost_cap_once"
+				class="outpost-cap-once" />
+				<strong>&nbsp;Can Only Capture Once</strong>
+			</label></li>
+			<li><label class="block-level">
+				<input type="checkbox" checked
+				name="neutralize_first"
+				id="neutralize_first"
+				class="outpost-neutralize_first" />
+				<strong>&nbsp;Neutralize Before Capture</strong>
+			</label></li>
+		</ul>
+	</div>
+	<label class="block-level">
+		<h5>Points for Capture</h5>
+		<input type="number" min="0" value="5" name="points_cap" id="points_cap" />
+	</label>
+	<label class="block-level">
+		<h5>Ownership Scoring</h5>
+		<input type="number" min="0" value="1" name="outpost_ownership_scoring" id="outpost_ownership_scoring" />
+		<strong>point(s) per</strong>
+		<select name="outpost_ownership_scoring_type" id="outpost_ownership_scoring_type">
+			<option value="second" selected>Second</option>
+			<option value="minute">Minute</option>
+		</select>
+	</label>
+</script>
+
+<script id="tmpl_bomb_settings" type="text/x-handlebars-template">
+	<h4 class="full-row">Bomb Settings</h4>
+	<label class="block-level">
+		<h5>Time to Set (Seconds)</h5>
+		<select name="bomb_timeset" id="bomb_timeset">
+			<option value="00">00</option>
+			<option value="01">01</option>
+			<option value="02">02</option>
+			<option value="03">03</option>
+			<option value="04">04</option>
+			<option value="05">05</option>
+			<option value="06">06</option>
+			<option value="07">07</option>
+			<option value="08">08</option>
+			<option value="09">09</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20">20</option>
+			<option value="21">21</option>
+			<option value="22">22</option>
+			<option value="23">23</option>
+			<option value="24">24</option>
+			<option value="25">25</option>
+			<option value="26">26</option>
+			<option value="27">27</option>
+			<option value="28">28</option>
+			<option value="29">29</option>
+			<option value="30">30</option>
+			<option value="31">31</option>
+			<option value="32">32</option>
+			<option value="33">33</option>
+			<option value="34">34</option>
+			<option value="35">35</option>
+			<option value="36">36</option>
+			<option value="37">37</option>
+			<option value="38">38</option>
+			<option value="39">39</option>
+			<option value="40">40</option>
+			<option value="40">40</option>
+			<option value="41">41</option>
+			<option value="42">42</option>
+			<option value="43">43</option>
+			<option value="44">44</option>
+			<option value="45">45</option>
+			<option value="46">46</option>
+			<option value="47">47</option>
+			<option value="48">48</option>
+			<option value="49">49</option>
+			<option value="50">50</option>
+			<option value="51">51</option>
+			<option value="52">52</option>
+			<option value="53">53</option>
+			<option value="54">54</option>
+			<option value="55">55</option>
+			<option value="56">56</option>
+			<option value="57">57</option>
+			<option value="58">58</option>
+			<option value="59">59</option>
+		</select>
+	</label>
+	<label class="block-level">
+		<h5>Time to Diffuse (Seconds)</h5>
+		<select name="bomb_timediff" id="bomb_timediff">
+			<option value="00">00</option>
+			<option value="01">01</option>
+			<option value="02">02</option>
+			<option value="03">03</option>
+			<option value="04">04</option>
+			<option value="05">05</option>
+			<option value="06">06</option>
+			<option value="07">07</option>
+			<option value="08">08</option>
+			<option value="09">09</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20">20</option>
+			<option value="21">21</option>
+			<option value="22">22</option>
+			<option value="23">23</option>
+			<option value="24">24</option>
+			<option value="25">25</option>
+			<option value="26">26</option>
+			<option value="27">27</option>
+			<option value="28">28</option>
+			<option value="29">29</option>
+			<option value="30">30</option>
+			<option value="31">31</option>
+			<option value="32">32</option>
+			<option value="33">33</option>
+			<option value="34">34</option>
+			<option value="35">35</option>
+			<option value="36">36</option>
+			<option value="37">37</option>
+			<option value="38">38</option>
+			<option value="39">39</option>
+			<option value="40">40</option>
+			<option value="40">40</option>
+			<option value="41">41</option>
+			<option value="42">42</option>
+			<option value="43">43</option>
+			<option value="44">44</option>
+			<option value="45">45</option>
+			<option value="46">46</option>
+			<option value="47">47</option>
+			<option value="48">48</option>
+			<option value="49">49</option>
+			<option value="50">50</option>
+			<option value="51">51</option>
+			<option value="52">52</option>
+			<option value="53">53</option>
+			<option value="54">54</option>
+			<option value="55">55</option>
+			<option value="56">56</option>
+			<option value="57">57</option>
+			<option value="58">58</option>
+			<option value="59">59</option>
+		</select>
+	</label>
+	<label class="block-level">
+		<h5>Ticking Time (MM:SS)</h5>
+		<div class="time-display">
+			<select name="bomb_timetick_mins" id="bomb_timetick_mins">
+				<option value="00">00</option>
+				<option value="01">01</option>
+				<option value="02">02</option>
+				<option value="03">03</option>
+				<option value="04">04</option>
+				<option value="05">05</option>
+				<option value="06">06</option>
+				<option value="07">07</option>
+				<option value="08">08</option>
+				<option value="09">09</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+				<option value="21">21</option>
+				<option value="22">22</option>
+				<option value="23">23</option>
+				<option value="24">24</option>
+				<option value="25">25</option>
+				<option value="26">26</option>
+				<option value="27">27</option>
+				<option value="28">28</option>
+				<option value="29">29</option>
+				<option value="30">30</option>
+				<option value="31">31</option>
+				<option value="32">32</option>
+				<option value="33">33</option>
+				<option value="34">34</option>
+				<option value="35">35</option>
+				<option value="36">36</option>
+				<option value="37">37</option>
+				<option value="38">38</option>
+				<option value="39">39</option>
+				<option value="40">40</option>
+				<option value="40">40</option>
+				<option value="41">41</option>
+				<option value="42">42</option>
+				<option value="43">43</option>
+				<option value="44">44</option>
+				<option value="45">45</option>
+				<option value="46">46</option>
+				<option value="47">47</option>
+				<option value="48">48</option>
+				<option value="49">49</option>
+				<option value="50">50</option>
+				<option value="51">51</option>
+				<option value="52">52</option>
+				<option value="53">53</option>
+				<option value="54">54</option>
+				<option value="55">55</option>
+				<option value="56">56</option>
+				<option value="57">57</option>
+				<option value="58">58</option>
+				<option value="59">59</option>
+			</select>
+			<strong>:</strong>
+			<select name="bomb_timetick_secs" id="bomb_timetick_secs">
+				<option value="00">00</option>
+				<option value="01">01</option>
+				<option value="02">02</option>
+				<option value="03">03</option>
+				<option value="04">04</option>
+				<option value="05">05</option>
+				<option value="06">06</option>
+				<option value="07">07</option>
+				<option value="08">08</option>
+				<option value="09">09</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+				<option value="21">21</option>
+				<option value="22">22</option>
+				<option value="23">23</option>
+				<option value="24">24</option>
+				<option value="25">25</option>
+				<option value="26">26</option>
+				<option value="27">27</option>
+				<option value="28">28</option>
+				<option value="29">29</option>
+				<option value="30">30</option>
+				<option value="31">31</option>
+				<option value="32">32</option>
+				<option value="33">33</option>
+				<option value="34">34</option>
+				<option value="35">35</option>
+				<option value="36">36</option>
+				<option value="37">37</option>
+				<option value="38">38</option>
+				<option value="39">39</option>
+				<option value="40">40</option>
+				<option value="40">40</option>
+				<option value="41">41</option>
+				<option value="42">42</option>
+				<option value="43">43</option>
+				<option value="44">44</option>
+				<option value="45">45</option>
+				<option value="46">46</option>
+				<option value="47">47</option>
+				<option value="48">48</option>
+				<option value="49">49</option>
+				<option value="50">50</option>
+				<option value="51">51</option>
+				<option value="52">52</option>
+				<option value="53">53</option>
+				<option value="54">54</option>
+				<option value="55">55</option>
+				<option value="56">56</option>
+				<option value="57">57</option>
+				<option value="58">58</option>
+				<option value="59">59</option>
+			</select>
+		</div>
+	</label>
+</script>
