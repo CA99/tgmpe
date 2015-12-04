@@ -36,3 +36,15 @@ $.fn.hideSection = function() {
 	$dropIcon.addClass('fa-chevron-right');
 	this.siblings('*').hide();
 }
+
+$.fn.displayPlayPause = function() {
+	var $icon = $(this).children('i');
+	if (TGM.ig.state == 'running') {
+		$icon.removeClass('fa-play').addClass('fa-pause');
+
+	}
+	else if (TGM.ig.state == 'stopped' || TGM.ig.state == 'paused' || TGM.ig.state == 'ended') {
+		$icon.removeClass('fa-pause').addClass('fa-play');
+
+	}
+}

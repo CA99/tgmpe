@@ -6,35 +6,39 @@
 @-webkit-keyframes spin {
 	from {
 		-webkit-transform: rotate(0deg);
-				transform: rotate(0deg);
+		        transform: rotate(0deg);
 	}
 	to {
 		-webkit-transform: rotate(360deg);
-				transform: rotate(360deg);
+		        transform: rotate(360deg);
 	}
 }
 
 @keyframes spin {
 	from {
 		-webkit-transform: rotate(0deg);
-				transform: rotate(0deg);
+		        transform: rotate(0deg);
 	}
 	to {
 		-webkit-transform: rotate(360deg);
-				transform: rotate(360deg);
+		        transform: rotate(360deg);
 	}
 }
 
 
 html {
-	/*font-size: 14px;*/
+	font-size: 14px;
+}
+
+body {
+
 }
 
 body, p {
 	font-family: SourceSansPro, sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, .prog-meter {
 	font-family: Lato, serif;
 	margin-top: 1rem;
 	margin-bottom: 1rem;
@@ -60,7 +64,7 @@ ul li {
 
 .spinner {
 	-webkit-animation: spin 1000ms infinite linear;
-			animation: spin 1000ms infinite linear;
+	        animation: spin 1000ms infinite linear;
 }
 
 .center-block, .top-level, .centered, .centered-left {
@@ -69,8 +73,8 @@ ul li {
 }
 
 .top-level {
-  max-width: 1152px;
-  padding: 20px;
+	max-width: 1152px;
+	padding: 5px 20px;
 }
 
 .centered {
@@ -123,4 +127,30 @@ ul li {
 .controls i {
 	margin: 0 1em;
 	cursor: pointer;
+}
+
+.controls .button {
+	width: 100px;
+	text-align: center;
+}
+
+.button {
+	font-weight: bold;
+	transition: all .1s ease-out;
+}
+
+.button, .button:focus {
+	background: #0a0a0a;
+}
+
+.button:hover {
+	background: #666;
+}
+
+.prog-meter {
+	display: block;
+	font-size: 2rem;
+	text-align: center;
+	border: 1px solid #ccc;
+	margin-bottom: 1em;
 }

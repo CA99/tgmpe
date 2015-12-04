@@ -28,15 +28,23 @@ $(document).ready(function() {
 		delete TGM.cg.timelimit_hrs;
 		delete TGM.cg.timelimit_mins;
 		delete TGM.cg.timelimit_secs;
+
+		TGM.cg.countoff =
+			parseInt(TGM.cg.countoff_mins) * 60 +
+			parseInt(TGM.cg.countoff_secs);
+		delete TGM.cg.countoff_mins;
+		delete TGM.cg.countoff_secs;
+
 		if (TGM.cg.obj_type == 'bomb') {
 			TGM.cg.bomb_timetick =
-			parseInt(TGM.cg.bomb_timetick.mins) * 60 +
+			parseInt(TGM.cg.bomb_timetick_mins) * 60 +
 			parseInt(TGM.cg.bomb_timetick_secs);
 		}
-		console.log(TGM.cg.timelimit);
-		TGM.ig = TGM.cg;
-		console.log(TGM.ig);
-		//toggleSectionHeader();
-		//startGame();
+		delete TGM.cg.bomb_timetick_mins;
+		delete TGM.cg.bomb_timetick_secs;
+
+		TGM.ig.stopGame();
+
+		toggleSectionHeader();
 	});
 });

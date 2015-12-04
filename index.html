@@ -11,6 +11,7 @@
 	<meta http-equiv="pragma" content="no-cache" />
 	<meta name="robots" content="noindex, nofollow" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0" />
+	<link rel="shortcut icon" href="favicon.ico" />
 	<link rel="stylesheet" href="lib/foundation-6/css/foundation.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/styles.css" />
 	<script type="text/javascript" src="lib/jquery-1.11.3.min.js"></script>
@@ -19,10 +20,11 @@
 	<script type="text/javascript" src="lib/handlebars-v4.0.4.min.js"></script>
 	<script type="text/javascript" src="lib/knockout-3.3.0.js"></script>
 	<script type="text/javascript" src="lib/numeral.min.js"></script>
-	<script type="text/javascript" src="lib/timer.jquery.js"></script>
+	<script type="text/javascript" src="lib/jquery.timer.js"></script>
 	<script type="text/javascript" src="lib/helpers.js"></script>
 	<script type="text/javascript" src="js/global_data.js"></script>
 	<script type="text/javascript" src="js/dom_manip.js"></script>
+	<script type="text/javascript" src="js/game_fns.js"></script>
 	<script type="text/javascript" src="js/create_game.js"></script>
 	<script type="text/javascript" src="js/in_game.js"></script>
 </head>
@@ -38,6 +40,138 @@
 				<label class="block-level">
 					<h5>Score Limit</h5>
 					<input type="number" min="1" value="1" name="score_limit" id="score_limit" />
+				</label>
+				<label class="block-level">
+					<h5>Countoff</h5>
+					<div class="time-display">
+						<select name="countoff_mins" id="countoff_mins">
+							<option value="0" selected>00</option>
+							<option value="1">01</option>
+							<option value="2">02</option>
+							<option value="3">03</option>
+							<option value="4">04</option>
+							<option value="5">05</option>
+							<option value="6">06</option>
+							<option value="7">07</option>
+							<option value="8">08</option>
+							<option value="9">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+							<option value="24">24</option>
+							<option value="25">25</option>
+							<option value="26">26</option>
+							<option value="27">27</option>
+							<option value="28">28</option>
+							<option value="29">29</option>
+							<option value="30">30</option>
+							<option value="31">31</option>
+							<option value="32">32</option>
+							<option value="33">33</option>
+							<option value="34">34</option>
+							<option value="35">35</option>
+							<option value="36">36</option>
+							<option value="37">37</option>
+							<option value="38">38</option>
+							<option value="39">39</option>
+							<option value="40">40</option>
+							<option value="40">40</option>
+							<option value="41">41</option>
+							<option value="42">42</option>
+							<option value="43">43</option>
+							<option value="44">44</option>
+							<option value="45">45</option>
+							<option value="46">46</option>
+							<option value="47">47</option>
+							<option value="48">48</option>
+							<option value="49">49</option>
+							<option value="50">50</option>
+							<option value="51">51</option>
+							<option value="52">52</option>
+							<option value="53">53</option>
+							<option value="54">54</option>
+							<option value="55">55</option>
+							<option value="56">56</option>
+							<option value="57">57</option>
+							<option value="58">58</option>
+							<option value="59">59</option>
+						</select>
+						<strong>:</strong>
+						<select name="countoff_secs" id="countoff_secs">
+							<option value="0">00</option>
+							<option value="1">01</option>
+							<option value="2">02</option>
+							<option value="3">03</option>
+							<option value="4">04</option>
+							<option value="5" selected>05</option>
+							<option value="6">06</option>
+							<option value="7">07</option>
+							<option value="8">08</option>
+							<option value="9">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+							<option value="24">24</option>
+							<option value="25">25</option>
+							<option value="26">26</option>
+							<option value="27">27</option>
+							<option value="28">28</option>
+							<option value="29">29</option>
+							<option value="30">30</option>
+							<option value="31">31</option>
+							<option value="32">32</option>
+							<option value="33">33</option>
+							<option value="34">34</option>
+							<option value="35">35</option>
+							<option value="36">36</option>
+							<option value="37">37</option>
+							<option value="38">38</option>
+							<option value="39">39</option>
+							<option value="40">40</option>
+							<option value="40">40</option>
+							<option value="41">41</option>
+							<option value="42">42</option>
+							<option value="43">43</option>
+							<option value="44">44</option>
+							<option value="45">45</option>
+							<option value="46">46</option>
+							<option value="47">47</option>
+							<option value="48">48</option>
+							<option value="49">49</option>
+							<option value="50">50</option>
+							<option value="51">51</option>
+							<option value="52">52</option>
+							<option value="53">53</option>
+							<option value="54">54</option>
+							<option value="55">55</option>
+							<option value="56">56</option>
+							<option value="57">57</option>
+							<option value="58">58</option>
+							<option value="59">59</option>
+						</select>
+					</div>
 				</label>
 				<label class="block-level">
 					<h5>Time Limit (HH:MM:SS)</h5>
@@ -245,20 +379,25 @@
 			<h2 class="section-header">Game &nbsp;<i class="fa fa-chevron-down"></i></h2>
 			<article class="full-row mid-grid">
 				<div class="block-level">
-					<h4 class="controls">
-						<i class="fa fa-arrow-left"></i>
-						<i class="fa fa-play"></i>
-						<i class="fa fa-pause"></i>
-						<i class="fa fa-stop"></i>
-					</h4>
+					<div class="prog-meter status">Status</div>
+				</div>
+			</article>
+			<article class="full-row mid-grid">
+				<div class="block-level">
+					<div class="controls">
+						<button class="button large"><i class="fa fa-arrow-left"></i></button>
+						<button class="button large"><i class="fa fa-play"></i></button>
+						<button class="button large"><i class="fa fa-stop"></i></button>
+						<button class="button large disabled" disabled><i class="fa fa-volume-off"></i></button>
+					</div>
 				</div>
 			</article>
 			<article class="full-row mid-grid">
 				<div class="block-level">
 					<h4>Time</h4>
-					<div class="time-display">
-						<h3>00:00:00</h3>
-					</div>
+					<h3>
+						<span class="time-display time-ticker">00:00:00</span>
+					</h3>
 				</div>
 				<div class="block-level">
 					<h4>Score</h4>
@@ -266,18 +405,18 @@
 					<h3>Blue Team: <span>0</span></h3>
 				</div>
 			</article>
-			<article class="full-row mid-grid">
+			<article class="full-row mid-grid" id="outpost-display">
 				<div class="block-level">
 					<h3>Outpost</h3>
-					<div class="prog-meter outpost"></div>
+					<div class="prog-meter outpost">Neutral</div>
 					<button class="button large">Red Team Capture</button>
 					<button class="button large">Blue Team Capture</button>
 				</div>
 			</article>
-			<article class="full-row mid-grid">
+			<article class="full-row mid-grid" id="bomb-display">
 				<div class="block-level">
 					<h3>Bomb</h3>
-					<div class="prog-meter bomb"></div>
+					<div class="prog-meter bomb">&nbsp;</div>
 					<button class="button large">Arm Bomb</button>
 					<button class="button large">Disarm Bomb</button>
 				</div>
