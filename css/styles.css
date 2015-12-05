@@ -108,7 +108,7 @@ ul li {
 }
 
 .full-row select, .full-row input {
-  max-width: 500px;
+  max-width: 300px;
 }
 
 .full-row ul {

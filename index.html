@@ -10,11 +10,12 @@
 	<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
 	<meta http-equiv="pragma" content="no-cache" />
 	<meta name="robots" content="noindex, nofollow" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
 	<link rel="shortcut icon" href="favicon.ico" />
 	<link rel="stylesheet" href="lib/foundation-6/css/foundation.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/styles.css" />
 	<script type="text/javascript" src="lib/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="lib/jquery.mobile.custom.min.js"></script>
 	<script type="text/javascript" src="lib/jquery-ui-1.11.4/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="lib/jquery.ui.touch-punch.min.js"></script>
 	<script type="text/javascript" src="lib/handlebars-v4.0.4.min.js"></script>
@@ -27,6 +28,7 @@
 	<script type="text/javascript" src="js/game_fns.js"></script>
 	<script type="text/javascript" src="js/create_game.js"></script>
 	<script type="text/javascript" src="js/in_game.js"></script>
+	<script type="text/javascript" src="js/objectives.js"></script>
 </head>
 <body>
 	<header class="top-level centered">
@@ -384,7 +386,7 @@
 			</article>
 			<article class="full-row mid-grid">
 				<div class="block-level">
-					<div class="controls">
+					<div class="controls centered" id="game_controls">
 						<button class="button large"><i class="fa fa-arrow-left"></i></button>
 						<button class="button large"><i class="fa fa-play"></i></button>
 						<button class="button large"><i class="fa fa-stop"></i></button>
@@ -401,25 +403,15 @@
 				</div>
 				<div class="block-level">
 					<h4>Score</h4>
-					<h3>Red Team: <span>0</span></h3>
-					<h3>Blue Team: <span>0</span></h3>
+					<h3>Red Team: <span id="red_score">0</span></h3>
+					<h3>Blue Team: <span id="blue_score">0</span></h3>
 				</div>
 			</article>
-			<article class="full-row mid-grid" id="outpost-display">
-				<div class="block-level">
-					<h3>Outpost</h3>
-					<div class="prog-meter outpost">Neutral</div>
-					<button class="button large">Red Team Capture</button>
-					<button class="button large">Blue Team Capture</button>
-				</div>
+			<article class="full-row mid-grid obj-display" id="outpost_display">
+
 			</article>
-			<article class="full-row mid-grid" id="bomb-display">
-				<div class="block-level">
-					<h3>Bomb</h3>
-					<div class="prog-meter bomb">&nbsp;</div>
-					<button class="button large">Arm Bomb</button>
-					<button class="button large">Disarm Bomb</button>
-				</div>
+			<article class="full-row mid-grid obj-display" id="bomb_display">
+
 			</article>
 		</section>
 	</main>
@@ -466,7 +458,7 @@
 	<label class="block-level">
 		<h5>Ownership Scoring</h5>
 		<input type="number" min="0" value="1" name="outpost_ownership_scoring" id="outpost_ownership_scoring" />
-		<strong>point(s) per</strong>
+		<p><strong>point(s) per</strong></p>
 		<select name="outpost_ownership_scoring_type" id="outpost_ownership_scoring_type">
 			<option value="second" selected>Second</option>
 			<option value="minute">Minute</option>
@@ -740,4 +732,25 @@
 			</select>
 		</div>
 	</label>
+</script>
+
+<script id="tmpl_outpost_objective" type="text/x-handlebars-template">
+	<div class="block-level">
+		<h3>Outpost</h3>
+		<div class="prog-meter outpost">Neutral</div>
+		<div class="centered">
+			<button class="button large">Red Team Capture</button>
+			<button class="button large">Blue Team Capture</button>
+		</div>
+	</div>
+</script>
+
+<script id="tmpl_bomb_objective" type="text/x-handlebars-template">
+	<div class="block-level">
+		<h3>Bomb</h3>
+		<div class="prog-meter bomb">Ready</div>
+		<div class="centered">
+			<button class="button large" id="obj_action_bomb">Arm Bomb</button>
+		</div>
+	</div>
 </script>

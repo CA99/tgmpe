@@ -1,6 +1,5 @@
 TGM.ig.startGame = function() {
 	TGM.ig.time = TGM.cg.timelimit;
-
 	TGM.ig.timer = $.timer(function() {
 		if (TGM.ig.time > 0) {
 			TGM.ig.time--;
@@ -19,24 +18,27 @@ TGM.ig.startGame = function() {
 }
 
 TGM.ig.stopGame = function() {
-	TGM.ig.state = "stopped";
+	if (TGM.ig.state == 'ended') {
+		$('#game_controls button:nth-child(3) .fa').removeClass('fa-refresh').addClass('fa-stop');
+	}
+	TGM.ig.state = 'stopped';
 	if (TGM.ig.timer) { TGM.ig.timer.stop(); }
 	$('.status').text(TGM.text.stopped);
 	$('.time-ticker').text(numeral(TGM.cg.timelimit).format('00:00:00'));
-	$('.controls button:nth-child(2)').displayPlayPause();
+	$('#game_controls button:nth-child(2)').displayPlayPause();
 	/*TGM.ig.timer = $.timer(function() {
 
 	});*/
 }
 
 TGM.ig.resumeGame = function() {
-	TGM.ig.state = "running";
+	TGM.ig.state = 'running';
 	TGM.ig.timer.play();
 	$('.status').text(TGM.text.running);
 }
 
 TGM.ig.pauseGame = function() {
-	TGM.ig.state = "paused";
+	TGM.ig.state = 'paused';
 	TGM.ig.timer.pause();
 	$('.status').text(TGM.text.paused);
 	/*TGM.ig.timer = $.timer(function() {
@@ -46,7 +48,7 @@ TGM.ig.pauseGame = function() {
 }
 
 TGM.ig.endGame = function() {
-	TGM.ig.state = "ended";
+	TGM.ig.state = 'ended';
 	if (TGM.ig.timer) { TGM.ig.timer.stop(); }
 	if (TGM.ig.score.sum() == 0) {
 		$('.status').text(TGM.text.ended);
@@ -56,20 +58,23 @@ TGM.ig.endGame = function() {
 		var statusText = TGM.text.ended;
 		if (winners.length == 1) {
 			if (winners[0] == 0) {
-				statusText = TGM.text.ended + ": Red Team Wins";
+				statusText = TGM.text.ended + ': Red Team Wins';
 			}
 			else if (winners[0] == 1) {
-				statusText = TGM.text.ended + ": Blue Team Wins";
+				statusText = TGM.text.ended + ': Blue Team Wins';
 			}
 		}
 		else if (winners.length == 2) {
-			statusText = TGM.text.ended + ": Both Teams Tied";
+			statusText = TGM.text.ended + ': Both Teams Tied';
 		}
 		$('.status').text(statusText);
 	}
-	$('.controls button:nth-child(2)').displayPlayPause();
+	$('#game_controls button:nth-child(2)').displayPlayPause();
+	$('#game_controls button:nth-child(3) .fa').removeClass('fa-stop').addClass('fa-refresh');
 }
 
 TGM.ig.incrementScore = function(team, type) {
-
+	console.log('increment score');
+	console.log(team);
+	console.log(type); // bomb armed, bomb detonated, neutralized outpost, captured outpost, outpost ownership scoring
 }

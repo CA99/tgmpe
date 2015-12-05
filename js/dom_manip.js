@@ -1,3 +1,10 @@
+$(document).ready(function() {
+	TGM.templates.ctmpl_outpost_settings = Handlebars.compile($('#tmpl_outpost_settings').html());
+	TGM.templates.ctmpl_bomb_settings = Handlebars.compile($('#tmpl_bomb_settings').html());
+	TGM.templates.ctmpl_outpost_objective = Handlebars.compile($('#tmpl_outpost_objective').html());
+	TGM.templates.ctmpl_bomb_objective = Handlebars.compile($('#tmpl_bomb_objective').html());
+});
+
 function toggleSectionHeader() {
 	$('.section-header').each(function() {
 		var $dropIcon = $(this).children('.fa');
@@ -10,18 +17,10 @@ function toggleSectionHeader() {
 	});
 }
 
-function renderObjectiveSettings(type) {
-	if (type == 'outpost') {
-		$('#outpost_settings').append(TGM.templates.ctmpl_outpost_settings);
-	}
-	else if (type == 'bomb') {
-		$('#bomb_settings').append(TGM.templates.ctmpl_bomb_settings);
-	}
-	else {
-		console.warn('Could not render objective settings.')
-	}
+function backToCG() {
+	TGM.ig.stopGame();
+	toggleSectionHeader();
 }
-
 
 $.fn.showSection = function() {
 	var $dropIcon = this.children('.fa');
