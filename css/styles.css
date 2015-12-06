@@ -31,7 +31,7 @@ html {
 }
 
 body {
-
+	min-width: 200px;
 }
 
 body, p {
@@ -109,6 +109,7 @@ ul li {
 
 .full-row select, .full-row input {
   max-width: 300px;
+  min-width: 45px;
 }
 
 .full-row ul {
@@ -137,6 +138,11 @@ ul li {
 .button {
 	font-weight: bold;
 	transition: all .1s ease-out;
+	-webkit-touch-action: manipulation;
+	touch-action: manipulation;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
 }
 
 .button, .button:focus {
@@ -153,4 +159,20 @@ ul li {
 	text-align: center;
 	border: 1px solid #ccc;
 	margin-bottom: 1em;
+	position: relative;
+}
+
+.prog-meter .prog-bar {
+	position: absolute;
+	z-index: -1;
+	left: 50%;
+	transform: translateX(-50%);
+	height: 100%;
+	width: 0%;
+	background: #ccc;
+}
+
+.prog-meter .status {
+	position: relative;
+	z-index: 1;
 }

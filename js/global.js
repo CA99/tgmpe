@@ -7,14 +7,17 @@ TGM = { // namespace
 		countoff: 0,
 		startGame: "",
 		score: [0, 0], // Red, Blue, Green, Yellow (only red/blue currently implemented)
-		outpost_owner: "neutral",
-		bomb_state: "ready" // ready, armed, disarmed, detonated
+		//outpost: {},
+		//bomb: {}
 	},
 	templates: {}, // Handlebars templates
 	text: { // Displayed text
 		stopped: "Ready to Start",
 		running: "Game in Progress",
 		paused: "Game Paused",
-		ended: "Game Over"
+		ended: "Game Over",
+		neutral_outpost: "Neutral Outpost",
+		red_outpost: "Red Team Outpost",
+		blue_outpost: "Blue Team Outpost"
 	}
 }

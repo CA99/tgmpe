@@ -15,6 +15,7 @@ function toggleSectionHeader() {
 			$(this).showSection();
 		}
 	});
+	window.scrollTo(0, 0);
 }
 
 function backToCG() {
@@ -46,4 +47,22 @@ $.fn.displayPlayPause = function() {
 		$icon.removeClass('fa-pause').addClass('fa-play');
 
 	}
+}
+
+function displayOutpostStatus(owner) {
+	switch (owner) {
+		case 'neutral':
+			$('#prog_outpost .status').text(TGM.text.neutral_outpost);
+		break;
+		case 'red':
+			$('#prog_outpost .status').text(TGM.text.red_outpost);
+		break;
+		case 'blue':
+			$('#prog_outpost .status').text(TGM.text.blue_outpost);
+		break;
+	}
+}
+
+function setProgressBar(percentage) {
+	$('.prog-bar').css('width',percentage+"%");
 }

@@ -1,9 +1,9 @@
 $(document).ready(function() {
-	$('#game_controls button:nth-child(1)').click(function() {
+	$('#btn_back').click(function() {
 		backToCG();
 	});
 
-	$('#game_controls button:nth-child(2)').click(function() {
+	$('#btn_play_pause').click(function() {
 		if (TGM.ig.state == 'stopped') {
 			TGM.ig.startGame();
 		}
@@ -17,15 +17,15 @@ $(document).ready(function() {
 			TGM.ig.stopGame();
 			TGM.ig.startGame();
 		}
-		$('#game_controls button:nth-child(2)').displayPlayPause();
+		$('#btn_play_pause').displayPlayPause();
 
 	});
 
-	$('#game_controls button:nth-child(3)').click(function() {
+	$('#btn_stop_refresh').click(function() {
 		TGM.ig.stopGame();
 	});
 
-	$('#game_controls button:nth-child(4)').click(function() {
+	$('#btn_audio').click(function() {
 
 	});
 

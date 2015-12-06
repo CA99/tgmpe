@@ -23,7 +23,7 @@
 	<script type="text/javascript" src="lib/numeral.min.js"></script>
 	<script type="text/javascript" src="lib/jquery.timer.js"></script>
 	<script type="text/javascript" src="lib/helpers.js"></script>
-	<script type="text/javascript" src="js/global_data.js"></script>
+	<script type="text/javascript" src="js/global.js"></script>
 	<script type="text/javascript" src="js/dom_manip.js"></script>
 	<script type="text/javascript" src="js/game_fns.js"></script>
 	<script type="text/javascript" src="js/create_game.js"></script>
@@ -39,11 +39,12 @@
 		<section id="create_game" class="full-row mid">
 			<form id="create_game_form">
 				<h2 class="section-header">Game Settings &nbsp;<i class="fa fa-chevron-down"></i></h2>
+				<p>This webapp is for running outpost, assault, and other objectives for Nerf, Airsoft, Paintball, or Water War games. Responsive layout, supports touch and keyboard/mouse, and requires an up-to-date browser.</p>
 				<label class="block-level">
 					<h5>Score Limit</h5>
-					<input type="number" min="1" value="1" name="score_limit" id="score_limit" />
+					<input type="number" min="1" value="1000" name="score_limit" id="score_limit" />
 				</label>
-				<label class="block-level">
+				<!--<label class="block-level">
 					<h5>Countoff</h5>
 					<div class="time-display">
 						<select name="countoff_mins" id="countoff_mins">
@@ -174,7 +175,7 @@
 							<option value="59">59</option>
 						</select>
 					</div>
-				</label>
+				</label>-->
 				<label class="block-level">
 					<h5>Time Limit (HH:MM:SS)</h5>
 					<div class="time-display">
@@ -339,7 +340,7 @@
 					<h5>Objective Type</h5>
 					<select name="obj_type" class="obj_type" id="obj_type">
 						<option value="outpost">Outpost</option>
-						<option value="bomb">Bomb</option>
+						<!--<option value="bomb">Bomb</option>-->
 					</select>
 				</label>
 				<div class="block-level">
@@ -359,7 +360,7 @@
 						</li>
 						<li>
 							<label>
-								<input type="radio" name="obj_teams" id="obj_teams_all" value="blue" checked />
+								<input type="radio" name="obj_teams" id="obj_teams_all" value="all" checked />
 								<strong>&nbsp;All Teams</strong>
 							</label>
 						</li>
@@ -381,16 +382,16 @@
 			<h2 class="section-header">Game &nbsp;<i class="fa fa-chevron-down"></i></h2>
 			<article class="full-row mid-grid">
 				<div class="block-level">
-					<div class="prog-meter status">Status</div>
+					<div class="prog-meter" id="status">Status</div>
 				</div>
 			</article>
 			<article class="full-row mid-grid">
 				<div class="block-level">
 					<div class="controls centered" id="game_controls">
-						<button class="button large"><i class="fa fa-arrow-left"></i></button>
-						<button class="button large"><i class="fa fa-play"></i></button>
-						<button class="button large"><i class="fa fa-stop"></i></button>
-						<button class="button large disabled" disabled><i class="fa fa-volume-off"></i></button>
+						<button class="button large" id="btn_back"><i class="fa fa-chevron-left"></i></button>
+						<button class="button large" id="btn_play_pause"><i class="fa fa-play"></i></button>
+						<button class="button large" id="btn_stop_refresh"><i class="fa fa-stop"></i></button>
+						<button class="button large disabled" disabled id="btn_audio"><i class="fa fa-volume-off"></i></button>
 					</div>
 				</div>
 			</article>
@@ -403,8 +404,8 @@
 				</div>
 				<div class="block-level">
 					<h4>Score</h4>
-					<h3>Red Team: <span id="red_score">0</span></h3>
-					<h3>Blue Team: <span id="blue_score">0</span></h3>
+					<h3>Red Team: <span class="score-display" id="red_score">0</span></h3>
+					<h3>Blue Team: <span class="score-display" id="blue_score">0</span></h3>
 				</div>
 			</article>
 			<article class="full-row mid-grid obj-display" id="outpost_display">
@@ -430,7 +431,7 @@
 	</label>
 	<label class="block-level">
 		<h5>Time to Capture (Seconds)</h5>
-		<input type="number" value="10" name="outpost_timecap"
+		<input type="number" value="1" name="outpost_timecap"
 		id="outpost_timecap" />
 	</label>
 	<div class="full-row">
@@ -453,11 +454,11 @@
 	</div>
 	<label class="block-level">
 		<h5>Points for Capture</h5>
-		<input type="number" min="0" value="5" name="points_cap" id="points_cap" />
+		<input type="number" min="0" value="20" name="outpost_points_cap" id="outpost_points_cap" />
 	</label>
 	<label class="block-level">
 		<h5>Ownership Scoring</h5>
-		<input type="number" min="0" value="1" name="outpost_ownership_scoring" id="outpost_ownership_scoring" />
+		<input type="number" min="0" value="2" name="outpost_ownership_scoring" id="outpost_ownership_scoring" />
 		<p><strong>point(s) per</strong></p>
 		<select name="outpost_ownership_scoring_type" id="outpost_ownership_scoring_type">
 			<option value="second" selected>Second</option>
@@ -732,25 +733,43 @@
 			</select>
 		</div>
 	</label>
+	<label class="block-level" style="display: block;">
+		<h5>Points for Planting</h5>
+		<input type="number" min="0" value="0" name="" id="">
+	</label>
+	<label class="block-level" style="display: block;">
+		<h5>Points for Detonation</h5>
+		<input type="number" min="0" value="1000" name="" id="">
+	</label>
+	<label class="block-level" style="display: block;">
+		<h5>Points for Diffusal</h5>
+		<input type="number" min="0" value="1000" name="" id="">
+	</label>
 </script>
 
 <script id="tmpl_outpost_objective" type="text/x-handlebars-template">
 	<div class="block-level">
-		<h3>Outpost</h3>
-		<div class="prog-meter outpost">Neutral</div>
+		<h3>Outpost <i class="fa fa-flag"></i></h3>
+		<div class="prog-meter" id="prog_outpost">
+			<div class="prog-bar"></div>
+			<div class="status">Neutral</div>
+		</div>
 		<div class="centered">
-			<button class="button large">Red Team Capture</button>
-			<button class="button large">Blue Team Capture</button>
+			<button class="button large obj_action obj_action_cap" id="btn_obj_action_red_cap">Red Team Capture</button>
+			<button class="button large obj_action obj_action_cap" id="btn_obj_action_blue_cap">Blue Team Capture</button>
 		</div>
 	</div>
 </script>
 
 <script id="tmpl_bomb_objective" type="text/x-handlebars-template">
 	<div class="block-level">
-		<h3>Bomb</h3>
-		<div class="prog-meter bomb">Ready</div>
+		<h3>Bomb <i class="fa fa-bomb"></i></h3>
+		<div class="prog-meter" id="prog_bomb">
+			<div class="prog-bar"></div>
+			<div class="status">Ready</div>
+		</div>
 		<div class="centered">
-			<button class="button large" id="obj_action_bomb">Arm Bomb</button>
+			<button class="button large obj_action obj_action_bomb" id="obj_action_bomb">Arm Bomb</button>
 		</div>
 	</div>
 </script>
