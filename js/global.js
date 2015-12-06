@@ -9,6 +9,16 @@ TGM = { // namespace
 		score: [0, 0], // Red, Blue, Green, Yellow (only red/blue currently implemented)
 		//outpost: {},
 		//bomb: {}
+		/*getOpposingTeam: function(team) {
+			switch (team) {
+				case 'red':
+					return 'blue';
+				break;
+				case 'blue':
+					return 'red';
+				break;
+			}
+		}*/
 	},
 	templates: {}, // Handlebars templates
 	text: { // Displayed text

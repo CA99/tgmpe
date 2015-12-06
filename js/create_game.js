@@ -68,6 +68,9 @@ $(document).ready(function() {
 							TGM.ig.incrementScore(TGM.ig.outpost.contested[1], 'outpost_capture');
 							TGM.ig.outpost.contested = [0, 'neutral'];
 							setProgressBar(0);
+							if (TGM.cg.outpost_cap_once) {
+								$('.button.obj_action').disable();
+							}
 						}
 					}
 				}),
@@ -141,7 +144,6 @@ $(document).ready(function() {
 			}
 			$('#outpost_display').append(TGM.templates.ctmpl_outpost_objective);
 			setOutpostControls();
-
 		}
 		else if (TGM.cg.obj_type == 'bomb') {
 			delete TGM.ig.outpost_owner;
