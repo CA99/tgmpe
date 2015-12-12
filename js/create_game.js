@@ -2,22 +2,12 @@ $(document).ready(function() {
 	$('.message').hide();
 	$('#in_game .section-header').hideSection();
 
+	renderObjSettings($('#obj_type').val());
 
-	$('#outpost_settings').append(TGM.templates.ctmpl_outpost_settings);
 	$('#obj_type').change(function() {
 		var type = $(this).val();
-		$('.obj-settings').children('*').remove();
-		if (type == 'outpost') {
-			$('#outpost_settings').append(TGM.templates.ctmpl_outpost_settings);
-		}
-		else if (type == 'bomb') {
-			$('#bomb_settings').append(TGM.templates.ctmpl_bomb_settings);
-		}
-		else {
-			console.warn('Could not render objective settings.');
-		}
+		renderObjSettings(type);
 	});
-
 
 	$('#start_game').click(function() {
 		event.preventDefault();
@@ -39,34 +29,34 @@ $(document).ready(function() {
 
 
 		if (TGM.cg.obj_type == 'bomb') {
-			TGM.cg.bomb_timetick =
-			parseInt(TGM.cg.bomb_timetick_mins) * 60 +
-			parseInt(TGM.cg.bomb_timetick_secs);
+			TGM.cg.bomb_timedet =
+			parseInt(TGM.cg.bomb_timedet_mins) * 60 +
+			parseInt(TGM.cg.bomb_timedet_secs);
 		}
-		delete TGM.cg.bomb_timetick_mins;
-		delete TGM.cg.bomb_timetick_secs;
+		delete TGM.cg.bomb_timedet_mins;
+		delete TGM.cg.bomb_timedet_secs;
 
 		// Render bomb or outpost objective in-game
 		$('.obj-display').children('*').remove();
 		TGM.ig.stopGame();
 		if (TGM.cg.obj_type == 'outpost') {
-			delete TGM.ig.bomb;
+			if (TGM.ig.bomb) { delete TGM.ig.bomb; }
 			TGM.ig.outpost = {
 				owner: TGM.cg.outpost_start_team,
-				contested: [0, 'neutral'], // State of outpost: [Progress, Team Contesting]
+				actionProgress: [0, 'neutral'], // State of outpost: [Progress, Team Contesting]
 				capTimer: $.timer(function() {
-					var max = TGM.cg.outpost_timecap * 100;
-					if (TGM.ig.outpost.contested[1] != TGM.ig.outpost.owner) {
-						if (TGM.ig.outpost.contested[0] < max) {
-							TGM.ig.outpost.contested[0]++;
-							var percentage = parseFloat(TGM.ig.outpost.contested[0] / max) * 100;
+					var max = TGM.cg.outpost_timecap * 10; // 10 stutter, 100 smooth
+					if (TGM.ig.outpost.actionProgress[1] != TGM.ig.outpost.owner) {
+						if (TGM.ig.outpost.actionProgress[0] < max) {
+							TGM.ig.outpost.actionProgress[0]++;
+							var percentage = parseFloat(TGM.ig.outpost.actionProgress[0] / max) * 100;
 							setProgressBar(percentage);
 						}
-						else if (TGM.ig.outpost.contested[0] == max) {
+						else if (TGM.ig.outpost.actionProgress[0] == max) {
 							TGM.ig.outpost.capTimer.stop();
-							TGM.ig.outpost.setOwner(TGM.ig.outpost.contested[1]);
-							TGM.ig.incrementScore(TGM.ig.outpost.contested[1], 'outpost_capture');
-							TGM.ig.outpost.contested = [0, 'neutral'];
+							TGM.ig.outpost.setOwner(TGM.ig.outpost.actionProgress[1]);
+							TGM.ig.incrementScore(TGM.ig.outpost.actionProgress[1], 'outpost_capture');
+							TGM.ig.outpost.actionProgress = [0, 'neutral'];
 							setProgressBar(0);
 							if (TGM.cg.outpost_cap_once) {
 								$('.button.obj_action').disable();
@@ -75,29 +65,29 @@ $(document).ready(function() {
 					}
 				}),
 				cooldownTimer: $.timer(function() {
-					var max = TGM.cg.outpost_timecap * 100;
-					if (TGM.ig.outpost.contested[1] != TGM.ig.outpost.owner) {
-						if (TGM.ig.outpost.contested[0] > 0) {
-							TGM.ig.outpost.contested[0]--;
-							var percentage = parseFloat(TGM.ig.outpost.contested[0] / max) * 100;
+					var max = TGM.cg.outpost_timecap * 10; // 10 stutter, 100 smooth
+					if (TGM.ig.outpost.actionProgress[1] != TGM.ig.outpost.owner) {
+						if (TGM.ig.outpost.actionProgress[0] > 0) {
+							TGM.ig.outpost.actionProgress[0]--;
+							var percentage = parseFloat(TGM.ig.outpost.actionProgress[0] / max) * 100; //
 							setProgressBar(percentage);
 						}
-						else if (TGM.ig.outpost.contested[0] == 0) {
+						else if (TGM.ig.outpost.actionProgress[0] == 0) {
 							TGM.ig.outpost.cooldownTimer.stop();
-							TGM.ig.outpost.contested[1] = 'neutral';
+							TGM.ig.outpost.actionProgress[1] = 'neutral';
 						}
 					}
 				}),
 				startCapture: function(newOwner) {
-					if (TGM.ig.outpost.contested[0] == 0 || TGM.ig.outpost.contested[1] == newOwner) {
+					if (TGM.ig.outpost.actionProgress[0] == 0 || TGM.ig.outpost.actionProgress[1] == newOwner) {
 						//TGM.cg.outpost_timecap;
-						if (TGM.ig.outpost.cooldownTimer || TGM.ig.outpost.contested[1] == 'neutral') {
-							if (TGM.ig.outpost.contested[1] == newOwner) {
+						if (TGM.ig.outpost.cooldownTimer || TGM.ig.outpost.actionProgress[1] == 'neutral') {
+							if (TGM.ig.outpost.actionProgress[1] == newOwner) {
 								TGM.ig.outpost.cooldownTimer.stop();
 							}
-							TGM.ig.outpost.contested[1] = newOwner;
+							TGM.ig.outpost.actionProgress[1] = newOwner;
 							TGM.ig.outpost.capTimer.set({
-								time: 10,
+								time: 100, // 100 stutter, 10 smooth
 								autostart: true
 							});
 						}
@@ -107,10 +97,10 @@ $(document).ready(function() {
 					}
 				},
 				stopCapture: function() {
-					if (TGM.ig.outpost.contested[0] != 0) {
+					if (TGM.ig.outpost.actionProgress[0] != 0) {
 						TGM.ig.outpost.capTimer.stop();
 						TGM.ig.outpost.cooldownTimer.set({
-							time: 10,
+							time: 100, // 100 stutter, 10 smooth
 							autostart: true
 						});
 					}
@@ -143,17 +133,91 @@ $(document).ready(function() {
 				}
 			}
 			$('#outpost_display').append(TGM.templates.ctmpl_outpost_objective);
+			setObjControls();
 			setOutpostControls();
 		}
 		else if (TGM.cg.obj_type == 'bomb') {
-			delete TGM.ig.outpost_owner;
+			if (TGM.ig.outpost) { delete TGM.ig.outpost; }
+			var objTeam = 'neutral';
+			if (TGM.cg.obj_teams_blue) { objTeam = 'blue' }
+			else if (TGM.cg.obj_teams_red) { objTeam = 'red' }
 			TGM.ig.bomb = {
 				state: 'ready',
+				team: objTeam,
+				actionProgress: [0, 'neutral', 'waiting'],
+				actionTimer: $.timer(function() {
+					switch (TGM.ig.bomb.state) {
+						case 'ready':
+							var max = TGM.cg.bomb_timearm * 10; // 10 stutter, 100 smooth
+						break;
+						case 'armed':
+							var max = TGM.cg.bomb_timediff * 10; // 10 stutter, 100 smooth
+						break;
+					}
+					if (TGM.ig.bomb.state == 'ready' || TGM.ig.bomb.state == 'armed') {
+						if (TGM.ig.bomb.actionProgress[2] == 'start') {
+							if (TGM.ig.bomb.actionProgress[0] < max) {
+								TGM.ig.bomb.actionProgress[0]++;
+							}
+							else if (TGM.ig.bomb.actionProgress[0] == max) {
+								TGM.ig.bomb.arm(TGM.ig.bomb.actionProgress[1]);
+								TGM.ig.bomb.actionProgress[0] = 0;
+							}
+						}
+						if (TGM.ig.bomb.actionProgress[2] == 'stop') {
+							if (TGM.ig.bomb.actionProgress[0] > 0) {
+								TGM.ig.bomb.actionProgress[0]--;
+							}
+							else if (TGM.ig.bomb.actionProgress[0] == 0) {
+								//stop timer
+								TGM.ig.bomb.actionProgress[0] = 0;
+							}
+						}
+						var percentage = parseFloat(TGM.ig.bomb.actionProgress[0] / max) * 100;
+						setProgressBar(percentage);
+					}
+				}),
+				fuseTimer: $.timer(function() {
+					// on each tick, run TGM.ig.bomb.tick()!
+				}),
+				startArm: function(team) {
+					console.log('start-arming: ' + team);
+					TGM.ig.bomb.actionProgress[1] = team;
+					TGM.ig.bomb.actionProgress[2] = 'start';
+					TGM.ig.bomb.actionTimer.set({
+						time: 100, // 100 stutter, 10 smooth
+						autostart: true
+					});
+				},
+				stopArm: function() {
+					console.log('stop-arming');
+
+				},
+				arm: function(team) {
+					console.log('armed');
+				},
+				disarm: function(team) {
+					console.log('disarmed');
+				},
+				startDisarm: function() {
+					console.log('start-disarming');
+				},
+				stopDisarm: function() {
+					console.log('stop-disarming');
+				},
+				detonate: function() {
+					console.log('detonated');
+				},
 				setState: function(newState) {
 					console.log("set state of bomb objective to " + newState);
+					TGM.ig.bomb.state = newState;
+				},
+				tick: function() {
+					console.log('tick'); // should flash and make beep sound
 				}
 			}
 			$('#bomb_display').append(TGM.templates.ctmpl_bomb_objective);
+			setObjControls();
 			setBombControls();
 		}
 		else {

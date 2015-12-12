@@ -68,8 +68,8 @@ ul li {
 }
 
 .center-block, .top-level, .centered, .centered-left {
-  margin-left: auto !important;
-  margin-right: auto !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
 }
 
 .top-level {
@@ -78,51 +78,51 @@ ul li {
 }
 
 .centered {
-  text-align: center;
+	text-align: center;
 }
 
 .centered-left {
-  text-align: left;
+	text-align: left;
 }
 
 .small-col {
-  max-width: 500px;
+	max-width: 500px;
 }
 
 .mid-grid {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: baseline;
-  justify-content: space-around;
+	display: flex;
+	flex-flow: row wrap;
+	align-items: baseline;
+	justify-content: space-around;
 }
 
 .mid-grid > .block-level {
-  display: block;
-  flex-grow: 1;
-  width: 270px;
-  margin: 0.5rem;
+	display: block;
+	flex-grow: 1;
+	width: 270px;
+	margin: 0.5rem;
 }
 
 .full-row {
-  width: 100% !important;
+	width: 100% !important;
 }
 
 .full-row select, .full-row input {
-  max-width: 300px;
-  min-width: 45px;
+	max-width: 350px;
+	min-width: 45px;
 }
 
 .full-row ul {
-  max-width: 300px;
+	max-width: 300px;
 }
 
 .time-display {
-  display: flex;
-  align-items: baseline;
+	display: flex;
+	align-items: baseline;
 }
 
 .time-display select {
-  margin: 0 0.5rem;
+	margin: 0 0.5rem;
 }
 
 .controls i {
@@ -138,11 +138,14 @@ ul li {
 .button {
 	font-weight: bold;
 	transition: all .1s ease-out;
+}
+
+.button, .obj-controls {
 	-webkit-touch-action: manipulation;
-	touch-action: manipulation;
-	-moz-user-select: none;
+	        touch-action: manipulation;
+	   -moz-user-select: none;
 	-webkit-user-select: none;
-	user-select: none;
+	        user-select: none;
 }
 
 .button, .button:focus {
@@ -151,6 +154,11 @@ ul li {
 
 .button:hover {
 	background: #666;
+}
+
+.button.obj_action {
+	padding-top: 3em;
+	padding-bottom: 3em;
 }
 
 .prog-meter {

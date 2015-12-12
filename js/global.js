@@ -1,5 +1,6 @@
 TGM = { // namespace
-	cg: {}, // create game
+	cg: {}, // create game: populated by form serialization and additional processing - create_game.js: 12
+
 	ig: { // in-game
 		state: "stopped", //stopped, running, paused, ended
 		timer: 0,
@@ -28,6 +29,12 @@ TGM = { // namespace
 		ended: "Game Over",
 		neutral_outpost: "Neutral Outpost",
 		red_outpost: "Red Team Outpost",
-		blue_outpost: "Blue Team Outpost"
+		blue_outpost: "Blue Team Outpost",
+		ready_bomb: "Ready to Arm",
+		armed_bomb: "Bomb Armed",
+		disarmed_bomb: "Bomb Disarmed",
+		arming_bomb: "Arming...",
+		disarming_bomb: "Disarming...",
+		detonated_bomb: "Bomb Detonated"
 	}
 }

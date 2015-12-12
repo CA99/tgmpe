@@ -29,6 +29,10 @@ TGM.ig.stopGame = function() {
 	if (TGM.ig.outpost) {
 		TGM.ig.outpost.setOwner(TGM.cg.outpost_start_team);
 		if (TGM.ig.outpost.scoreTimer) {TGM.ig.outpost.scoreTimer.stop(); }
+		if (TGM.ig.outpost.actionProgress[0] > 0) {
+			TGM.ig.outpost.actionProgress = [0, 'neutral'];
+			setProgressBar(0);
+		}
 	}
 
 	TGM.ig.resetScore();
@@ -43,7 +47,11 @@ TGM.ig.resumeGame = function() {
 	TGM.ig.state = 'running';
 	TGM.ig.timer.play();
 	$('#status').text(TGM.text.running);
-	$('.button.obj_action').enable();
+	if (TGM.ig.outpost) {
+		if (!TGM.cg.outpost_cap_once) { $('.button.obj_action').enable(); }
+		if (TGM.ig.outpost.actionProgress[0] > 0) { TGM.ig.outpost.cooldownTimer.play(); } //WIP
+		if (TGM.ig.outpost.owner != 'neutral') { TGM.ig.outpost.scoreTimer.play(); }
+	}
 }
 
 TGM.ig.pauseGame = function() {
@@ -51,10 +59,12 @@ TGM.ig.pauseGame = function() {
 	TGM.ig.timer.pause();
 	$('#status').text(TGM.text.paused);
 	$('.button.obj_action').disable();
-	/*TGM.ig.timer = $.timer(function() {
-
-	});*/
-
+	if (TGM.ig.outpost) {
+		if (TGM.ig.outpost.actionProgress[0] > 0) {
+			TGM.ig.outpost.stopCapture();
+			TGM.ig.outpost.cooldownTimer.pause(); } //WIP
+		if (TGM.ig.outpost.owner != 'neutral') { TGM.ig.outpost.scoreTimer.pause(); }
+	}
 }
 
 TGM.ig.endGame = function() {
