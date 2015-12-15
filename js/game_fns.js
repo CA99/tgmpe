@@ -16,7 +16,7 @@ TGM.ig.startGame = function() {
 	});
 	TGM.ig.resumeGame();
 
-	if (TGM.ig.outpost) { TGM.ig.outpost.setOwner(TGM.cg.outpost_start_team); }
+	if (objKeyTest('TGM.ig.outpost')) { TGM.ig.outpost.setOwner(TGM.cg.outpost_start_team); }
 	$('.button.obj_action').enable();
 }
 
@@ -25,10 +25,10 @@ TGM.ig.stopGame = function() {
 		$('#btn_stop_refresh .fa').removeClass('fa-refresh').addClass('fa-stop');
 	}
 	TGM.ig.state = 'stopped';
-	if (TGM.ig.timer) { TGM.ig.timer.stop(); }
-	if (TGM.ig.outpost) {
+	if (objKeyTest('TGM.ig.timer')) { TGM.ig.timer.stop(); }
+	if (objKeyTest('TGM.ig.outpost')) {
 		TGM.ig.outpost.setOwner(TGM.cg.outpost_start_team);
-		if (TGM.ig.outpost.scoreTimer) {TGM.ig.outpost.scoreTimer.stop(); }
+		if (objKeyTest('TGM.ig.outpost.scoreTimer')) {TGM.ig.outpost.scoreTimer.stop(); }
 		if (TGM.ig.outpost.actionProgress[0] > 0) {
 			TGM.ig.outpost.actionProgress = [0, 'neutral'];
 			setProgressBar(0);
@@ -47,7 +47,7 @@ TGM.ig.resumeGame = function() {
 	TGM.ig.state = 'running';
 	TGM.ig.timer.play();
 	$('#status').text(TGM.text.running);
-	if (TGM.ig.outpost) {
+	if (objKeyTest('TGM.ig.outpost')) {
 		if (!TGM.cg.outpost_cap_once) { $('.button.obj_action').enable(); }
 		if (TGM.ig.outpost.actionProgress[0] > 0) { TGM.ig.outpost.cooldownTimer.play(); } //WIP
 		if (TGM.ig.outpost.owner != 'neutral') { TGM.ig.outpost.scoreTimer.play(); }
@@ -59,7 +59,7 @@ TGM.ig.pauseGame = function() {
 	TGM.ig.timer.pause();
 	$('#status').text(TGM.text.paused);
 	$('.button.obj_action').disable();
-	if (TGM.ig.outpost) {
+	if (objKeyTest('TGM.ig.outpost')) {
 		if (TGM.ig.outpost.actionProgress[0] > 0) {
 			TGM.ig.outpost.stopCapture();
 			TGM.ig.outpost.cooldownTimer.pause(); } //WIP
@@ -69,8 +69,8 @@ TGM.ig.pauseGame = function() {
 
 TGM.ig.endGame = function() {
 	TGM.ig.state = 'ended';
-	if (TGM.ig.timer) { TGM.ig.timer.stop(); }
-	if (TGM.ig.outpost.scoreTimer) { TGM.ig.outpost.scoreTimer.stop(); }
+	if (objKeyTest('TGM.ig.timer')) { TGM.ig.timer.stop(); }
+	if (objKeyTest('TGM.ig.outpost.scoreTimer')) { TGM.ig.outpost.scoreTimer.stop(); }
 	if (TGM.ig.score.sum() == 0) {
 		$('#status').text(TGM.text.ended);
 	}

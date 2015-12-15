@@ -63,6 +63,20 @@ function displayOutpostStatus(owner) {
 	}
 }
 
+function displayBombStatus(action) {
+	switch (action) {
+		case 'arming':
+			$('#prog_outpost .status').text(TGM.text.arming_bomb);
+		break;
+		case 'disarming':
+			$('#prog_outpost .status').text(TGM.text.disarming);
+		break;
+		case 'detonate':
+			$('#prog_outpost .status').text(TGM.text.detonated_bomb);
+		break;
+	}
+}
+
 function setProgressBar(percentage) {
 	$('.prog-bar').css('width',percentage+"%");
 }

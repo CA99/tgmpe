@@ -170,6 +170,11 @@ ul li {
 	position: relative;
 }
 
+.prog-meter.flash {
+	background: #0a0a0a;
+	color: #fefefe;
+}
+
 .prog-meter .prog-bar {
 	position: absolute;
 	z-index: -1;
@@ -183,4 +188,26 @@ ul li {
 .prog-meter .status {
 	position: relative;
 	z-index: 1;
+}
+
+@-webkit-keyframes spin {
+	from {
+		-webkit-transform: rotate(0deg);
+		        transform: rotate(0deg);
+	}
+	to {
+		-webkit-transform: rotate(360deg);
+		        transform: rotate(360deg);
+	}
+}
+
+@keyframes spin {
+	from {
+		-webkit-transform: rotate(0deg);
+		        transform: rotate(0deg);
+	}
+	to {
+		-webkit-transform: rotate(360deg);
+		        transform: rotate(360deg);
+	}
 }

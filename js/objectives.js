@@ -33,19 +33,19 @@ function setBombControls() {
 	$('.obj_action_bomb').on('vmousedown',function() {
 		if (TGM.ig.bomb.state == 'ready') {
 			if ($(this).attr('id') == 'btn_obj_action_red_bomb') {
-				TGM.ig.bomb.startArm('red');
+				TGM.ig.bomb.startAction('red');
 			}
 			else if ($(this).attr('id') == 'btn_obj_action_blue_bomb') {
-				TGM.ig.bomb.startArm('blue');
+				TGM.ig.bomb.startAction('blue');
 			}
 
 		}
 	});
 	$('.obj_action_bomb').on('vmouseup', function() {
-		TGM.ig.bomb.stopArm();
+		TGM.ig.bomb.stopAction();
 	});
 	$('.obj_action_bomb').on('vmouseout', function() {
-		TGM.ig.bomb.stopArm();
+		TGM.ig.bomb.stopAction();
 	});
 };
 
