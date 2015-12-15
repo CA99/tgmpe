@@ -31,14 +31,16 @@ function setOutpostControls() {
 
 function setBombControls() {
 	$('.obj_action_bomb').on('vmousedown',function() {
-		if (TGM.ig.bomb.state == 'ready') {
+		if (TGM.ig.bomb.state == 'ready' || TGM.ig.bomb.state == 'armed') {
 			if ($(this).attr('id') == 'btn_obj_action_red_bomb') {
 				TGM.ig.bomb.startAction('red');
 			}
 			else if ($(this).attr('id') == 'btn_obj_action_blue_bomb') {
 				TGM.ig.bomb.startAction('blue');
 			}
-
+		}
+		else if (TGM.ig.bomb.state == 'disarmed' || TGM.ig.bomb.state == 'detonated') {
+			TGM.ig.bomb.reset();
 		}
 	});
 	$('.obj_action_bomb').on('vmouseup', function() {

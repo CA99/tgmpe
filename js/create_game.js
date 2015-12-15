@@ -161,8 +161,14 @@ $(document).ready(function() {
 								TGM.ig.bomb.actionProgress[0]++;
 							}
 							else if (TGM.ig.bomb.actionProgress[0] == max) {
-								if (TGM.ig.bomb.state == 'ready') { TGM.ig.bomb.arm(TGM.ig.bomb.actionProgress[1]); }
-								else if (TGM.ig.bomb.state == 'armed') { TGM.ig.bomb.disarm(); }
+								if (TGM.ig.bomb.state == 'ready') {
+									TGM.ig.bomb.arm(TGM.ig.bomb.actionProgress[1]);
+									displayBombStatus('armed');
+								}
+								else if (TGM.ig.bomb.state == 'armed') {
+									TGM.ig.bomb.disarm(TGM.ig.getOpposingTeam(TGM.ig.bomb.team));
+									displayBombStatus('disarmed')
+								}
 								TGM.ig.bomb.actionTimer.stop();
 								TGM.ig.bomb.actionProgress = [0, 'neutral', 'waiting'];
 							}
@@ -174,6 +180,8 @@ $(document).ready(function() {
 							else if (TGM.ig.bomb.actionProgress[0] == 0) {
 								TGM.ig.bomb.actionTimer.stop();
 								TGM.ig.bomb.actionProgress[0] = 0;
+								if (TGM.ig.bomb.state == 'ready') { displayBombStatus('ready'); }
+								else if (TGM.ig.bomb.state == 'armed') { displayBombStatus('armed'); }
 							}
 						}
 						var percentage = parseFloat(TGM.ig.bomb.actionProgress[0] / max) * 100;
@@ -192,6 +200,8 @@ $(document).ready(function() {
 						time: 100, // 100 stutter, 10 smooth
 						autostart: true
 					});
+					if (TGM.ig.bomb.state == 'ready') { displayBombStatus('arming') }
+					else if (TGM.ig.bomb.state == 'armed') { displayBombStatus('disarming') }
 				},
 				stopAction: function(team) {
 					console.log('stop-action');
@@ -199,22 +209,23 @@ $(document).ready(function() {
 				},
 				arm: function(team) {
 					console.log('armed ' + team);
-					TGM.ig.bomb.state = 'armed';
-					TGM.ig.bomb.team = team;
-
-				},
-				disarm: function(team) {
-					console.log('disarmed ' + team);
-					TGM.ig.bomb.state = 'disarmed';
+					TGM.ig.bomb.setState('armed');
 					TGM.ig.bomb.team = team;
 					TGM.ig.bomb.fuse = TGM.cg.bomb_timedet;
 				},
+				disarm: function(team) {
+					console.log('disarmed ' + team);
+					TGM.ig.bomb.setState('disarmed');
+					TGM.ig.bomb.team = team;
+				},
 				detonate: function() {
 					console.log('detonated');
+					TGM.ig.bomb.setState('detonated');
 				},
 				setState: function(newState) {
 					console.log("set state of bomb objective to " + newState);
 					TGM.ig.bomb.state = newState;
+					displayBombStatus(newState);
 				},
 				tick: function() {
 					console.log('tick'); // should flash and make beep sound
@@ -222,11 +233,16 @@ $(document).ready(function() {
 					setTimeout(function() {
 						$('#prog_bomb').removeClass('flash');
 					}, 200);
+				},
+				reset: function() {
+					TGM.ig.bomb.team = objTeam;
+					TGM.ig.bomb.setState('ready');
 				}
 			}
 			$('#bomb_display').append(TGM.templates.ctmpl_bomb_objective);
 			setObjControls();
 			setBombControls();
+			displayBombStatus('ready');
 		}
 		else {
 			console.warn('Could not render objective display.');

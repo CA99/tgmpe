@@ -66,13 +66,22 @@ function displayOutpostStatus(owner) {
 function displayBombStatus(action) {
 	switch (action) {
 		case 'arming':
-			$('#prog_outpost .status').text(TGM.text.arming_bomb);
+			$('#prog_bomb .status').text(TGM.text.arming_bomb);
 		break;
 		case 'disarming':
-			$('#prog_outpost .status').text(TGM.text.disarming);
+			$('#prog_bomb .status').text(TGM.text.disarming_bomb);
+		break;
+		case 'armed':
+			$('#prog_bomb .status').text(TGM.text.armed_bomb);
+		break;
+		case 'disarmed':
+			$('#prog_bomb .status').text(TGM.text.disarmed_bomb);
 		break;
 		case 'detonate':
-			$('#prog_outpost .status').text(TGM.text.detonated_bomb);
+			$('#prog_bomb .status').text(TGM.text.detonated_bomb);
+		break;
+		case 'ready':
+			$('#prog_bomb .status').text(TGM.text.ready_bomb);
 		break;
 	}
 }

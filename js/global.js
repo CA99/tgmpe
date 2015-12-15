@@ -10,7 +10,7 @@ TGM = { // namespace
 		score: [0, 0], // Red, Blue, Green, Yellow (only red/blue currently implemented)
 		//outpost: {},
 		//bomb: {}
-		/*getOpposingTeam: function(team) {
+		getOpposingTeam: function(team) {
 			switch (team) {
 				case 'red':
 					return 'blue';
@@ -19,7 +19,7 @@ TGM = { // namespace
 					return 'red';
 				break;
 			}
-		}*/
+		}
 	},
 	templates: {}, // Handlebars templates
 	text: { // Displayed text
@@ -30,11 +30,11 @@ TGM = { // namespace
 		neutral_outpost: "Neutral Outpost",
 		red_outpost: "Red Team Outpost",
 		blue_outpost: "Blue Team Outpost",
-		ready_bomb: "Ready to Arm",
-		armed_bomb: "Bomb Armed",
-		disarmed_bomb: "Bomb Disarmed",
-		arming_bomb: "Arming...",
-		disarming_bomb: "Disarming...",
+		ready_bomb: "Waiting...",
+		armed_bomb: "Bomb Has Been Planted",
+		disarmed_bomb: "Bomb Has Been Diffused",
+		arming_bomb: "Planting...",
+		disarming_bomb: "Diffusing...",
 		detonated_bomb: "Bomb Detonated"
 	}
 }

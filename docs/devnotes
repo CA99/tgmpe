@@ -1,3 +1,19 @@
 Server:
 npm install -g http-server
 http-server -c-1
+
+ToDos:
+Priority:
+- Outpost objective + pause functionality - DONE
+- Outpost capture Double-tap bug - Watching
+- Bomb objective + pause functionality - WIP
+- Outpost continuous button hold fix - Watching
+- Countoff
+- Audio
+
+Extras:
+- UI enhancements: Shrink buttons, add colors, add icons
+- Code refactoring (logic, data, & performance)
+- New features/objectives
+
+Vocabulary Revision:
