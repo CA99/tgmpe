@@ -34,6 +34,9 @@ TGM.ig.stopGame = function() {
 			setProgressBar(0);
 		}
 	}
+	if (objKeyTest('TGM.ig.bomb')) {
+		TGM.ig.bomb.reset();
+	}
 
 	TGM.ig.resetScore();
 	$('#status').text(TGM.text.stopped);
@@ -41,6 +44,7 @@ TGM.ig.stopGame = function() {
 	$('#btn_play_pause').displayPlayPause();
 	$('.button.obj_action').disable();
 	$('#btn_play_pause').enable();
+	$('.button.obj_action').prop('resumeEnable', false);
 }
 
 TGM.ig.resumeGame = function() {
@@ -48,23 +52,41 @@ TGM.ig.resumeGame = function() {
 	TGM.ig.timer.play();
 	$('#status').text(TGM.text.running);
 	if (objKeyTest('TGM.ig.outpost')) {
-		if (!TGM.cg.outpost_cap_once) { $('.button.obj_action').enable(); }
 		if (TGM.ig.outpost.actionProgress[0] > 0) { TGM.ig.outpost.cooldownTimer.play(); } //WIP
 		if (TGM.ig.outpost.owner != 'neutral') { TGM.ig.outpost.scoreTimer.play(); }
 	}
+	if (objKeyTest('TGM.ig.bomb')) {
+		if (TGM.ig.bomb.state == 'armed') { TGM.ig.bomb.fuseTimer.play(); }
+		if (TGM.ig.bomb.actionProgress[0] != 0) { TGM.ig.bomb.actionTimer.play(); }
+	}
+	$('.button.obj_action').each(function() {
+		if ($(this).prop('resumeEnable')) {
+			$(this).prop('resumeEnable', false);
+			$(this).enable();
+		}
+	});
 }
 
 TGM.ig.pauseGame = function() {
 	TGM.ig.state = 'paused';
 	TGM.ig.timer.pause();
 	$('#status').text(TGM.text.paused);
-	$('.button.obj_action').disable();
 	if (objKeyTest('TGM.ig.outpost')) {
 		if (TGM.ig.outpost.actionProgress[0] > 0) {
 			TGM.ig.outpost.stopCapture();
 			TGM.ig.outpost.cooldownTimer.pause(); } //WIP
 		if (TGM.ig.outpost.owner != 'neutral') { TGM.ig.outpost.scoreTimer.pause(); }
 	}
+	if (objKeyTest('TGM.ig.bomb')) {
+		if (TGM.ig.bomb.state == 'armed') { TGM.ig.bomb.fuseTimer.pause(); }
+		if (TGM.ig.bomb.actionProgress[0] != 0) { TGM.ig.bomb.actionTimer.pause(); }
+	}
+	$('.button.obj_action').each(function() {
+		if (!$(this).prop('disabled')) {
+			$(this).prop('resumeEnable', true);
+			$(this).disable();
+		}
+	});
 }
 
 TGM.ig.endGame = function() {
@@ -94,6 +116,7 @@ TGM.ig.endGame = function() {
 	$('#btn_stop_refresh .fa').removeClass('fa-stop').addClass('fa-refresh');
 	$('.button.obj_action').disable();
 	$('#btn_play_pause').disable();
+	$('.button.obj_action').prop('resumeEnable', false);
 }
 
 TGM.ig.incrementScore = function(team, type) {
@@ -105,6 +128,16 @@ TGM.ig.incrementScore = function(team, type) {
 		break;
 		case 'outpost_ownership':
 			incrementer = TGM.cg.outpost_ownership_scoring;
+		break;
+		case 'bomb_arm':
+			incrementer = TGM.cg.bomb_pointsarm;
+		break;
+		case 'bomb_disarm':
+			incrementer = TGM.cg.bomb_pointsdiff;
+		break;
+		case 'bomb_detonate':
+			incrementer = TGM.cg.bomb_pointsdet;
+		break;
 	}
 	switch(team) {
 		case 'red':

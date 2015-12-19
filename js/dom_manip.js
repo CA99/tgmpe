@@ -15,7 +15,7 @@ function toggleSectionHeader() {
 			$(this).showSection();
 		}
 	});
-	window.scrollTo(0, 0);
+	//window.scrollTo(0, 0);
 }
 
 function backToCG() {
@@ -77,7 +77,7 @@ function displayBombStatus(action) {
 		case 'disarmed':
 			$('#prog_bomb .status').text(TGM.text.disarmed_bomb);
 		break;
-		case 'detonate':
+		case 'detonated':
 			$('#prog_bomb .status').text(TGM.text.detonated_bomb);
 		break;
 		case 'ready':
@@ -97,14 +97,14 @@ function renderObjSettings(type) {
 		/*var $allTeamsCtrl = $('#obj_teams_all').parent('label').parent('li');
 		$allTeamsCtrl.enable();
 		$allTeamsCtrl.show();*/
-		$('#obj_teams_all').prop('checked',true);
+		//$('#obj_teams_all').prop('checked',true);
 	}
 	else if (type == 'bomb') {
 		$('#bomb_settings').append(TGM.templates.ctmpl_bomb_settings);
 		/*var $allTeamsCtrl = $('#obj_teams_all').parent('label').parent('li');
 		$allTeamsCtrl.disable();
 		$allTeamsCtrl.hide();*/
-		$('#obj_teams_blue').prop('checked',true);
+		//$('#obj_teams_blue').prop('checked',true);
 	}
 	else {
 		console.warn('Could not render objective settings.');

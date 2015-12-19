@@ -16,19 +16,19 @@
 	<link rel="stylesheet" type="text/css" href="css/styles.css" />
 	<script type="text/javascript" src="lib/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="lib/jquery.mobile.custom.min.js"></script>
-	<script type="text/javascript" src="lib/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+	<!--<script type="text/javascript" src="lib/jquery-ui-1.11.4/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="lib/jquery.ui.touch-punch.min.js"></script>
+	<script type="text/javascript" src="lib/knockout-3.3.0.js"></script>-->
 	<script type="text/javascript" src="lib/handlebars-v4.0.4.min.js"></script>
-	<script type="text/javascript" src="lib/knockout-3.3.0.js"></script>
 	<script type="text/javascript" src="lib/numeral.min.js"></script>
 	<script type="text/javascript" src="lib/jquery.timer.js"></script>
 	<script type="text/javascript" src="lib/helpers.js"></script>
 	<script type="text/javascript" src="js/global.js"></script>
 	<script type="text/javascript" src="js/dom_manip.js"></script>
 	<script type="text/javascript" src="js/game_fns.js"></script>
+	<script type="text/javascript" src="js/objectives.js"></script>
 	<script type="text/javascript" src="js/create_game.js"></script>
 	<script type="text/javascript" src="js/in_game.js"></script>
-	<script type="text/javascript" src="js/objectives.js"></script>
 </head>
 <body>
 	<header class="top-level centered">
@@ -479,18 +479,18 @@
 	<h4 class="full-row">Bomb Settings</h4>
 	<label class="block-level">
 		<h5>Time to Plant (Seconds)</h5>
-		<input type="number" value="5" name="bomb_timearm" id="bomb_timearm" />
+		<input type="number" value="3" name="bomb_timearm" id="bomb_timearm" />
 	</label>
 	<label class="block-level">
 		<h5>Time to Diffuse (Seconds)</h5>
-		<input type="number" value="5" name="bomb_timediff" id="bomb_timediff" />
+		<input type="number" value="3" name="bomb_timediff" id="bomb_timediff" />
 	</label>
 	<label class="block-level">
 		<h5>Ticking Time (MM:SS)</h5>
 		<div class="time-display">
 			<select name="bomb_timedet_mins" id="bomb_timedet_mins">
-				<option value="00">00</option>
-				<option value="01" selected>01</option>
+				<option value="00" selected>00</option>
+				<option value="01">01</option>
 				<option value="02">02</option>
 				<option value="03">03</option>
 				<option value="04">04</option>
@@ -583,7 +583,7 @@
 				<option value="27">27</option>
 				<option value="28">28</option>
 				<option value="29">29</option>
-				<option value="30">30</option>
+				<option value="30" selected>30</option>
 				<option value="31">31</option>
 				<option value="32">32</option>
 				<option value="33">33</option>
@@ -619,16 +619,27 @@
 	</label>
 	<label class="block-level" style="display: block;">
 		<h5>Points for Planting</h5>
-		<input type="number" min="0" value="0" name="" id="">
+		<input type="number" min="0" value="0" name="bomb_pointsarm" id="bomb_pointsarm">
 	</label>
 	<label class="block-level" style="display: block;">
 		<h5>Points for Detonation</h5>
-		<input type="number" min="0" value="1000" name="" id="">
+		<input type="number" min="0" value="1000" name="bomb_pointsdet" id="bomb_pointsdet">
 	</label>
 	<label class="block-level" style="display: block;">
 		<h5>Points for Diffusal</h5>
-		<input type="number" min="0" value="1000" name="" id="">
+		<input type="number" min="0" value="1000" name="bomb_pointsdiff" id="bomb_pointsdiff">
 	</label>
+	<div class="full-row">
+		<ul>
+			<li><label class="block-level">
+				<input type="checkbox"
+				name="bomb_use_once"
+				id="bomb_use_once"
+				class="bomb-use-once" />
+				<strong>&nbsp;Can Only Use Once</strong>
+			</label></li>
+		</ul>
+	</div>
 </script>
 
 <script id="tmpl_outpost_objective" type="text/x-handlebars-template">
@@ -654,8 +665,9 @@
 		</div>
 		<div class="centered">
 			<div class="centered obj-controls">
-				<button class="button large obj_action obj_action_red obj_action_bomb" id="btn_obj_action_red_bomb">Red Team Arm</button>
-				<button class="button large obj_action obj_action_blue obj_action_bomb" id="btn_obj_action_blue_bomb">Blue Team Arm</button>
+				<button class="button large obj_action obj_action_red obj_action_bomb" id="btn_obj_action_red_bomb">Red Team Action</button>
+				<button class="button large obj_action obj_action_blue obj_action_bomb" id="btn_obj_action_blue_bomb">Blue Team Action</button>
+				<!--<button class="button large obj_action obj_action_neutral obj_action_bomb" id="btn_obj_action_neutral_bomb">Neutral Action</button>-->
 			</div>
 		</div>
 	</div>

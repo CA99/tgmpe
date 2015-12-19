@@ -80,7 +80,6 @@ $(document).ready(function() {
 				}),
 				startCapture: function(newOwner) {
 					if (TGM.ig.outpost.actionProgress[0] == 0 || TGM.ig.outpost.actionProgress[1] == newOwner) {
-						//TGM.cg.outpost_timecap;
 						if (TGM.ig.outpost.cooldownTimer || TGM.ig.outpost.actionProgress[1] == 'neutral') {
 							if (TGM.ig.outpost.actionProgress[1] == newOwner) {
 								TGM.ig.outpost.cooldownTimer.stop();
@@ -189,54 +188,112 @@ $(document).ready(function() {
 					}
 				}),
 				fuseTimer: $.timer(function() {
-					// on each tick, run TGM.ig.bomb.tick()!
+					TGM.ig.bomb.tick();
+					var interval1 = 30;
+					var interval2 = 15;
+					var interval3 = 5;
+					var interval4 = 3;
+					if (TGM.ig.bomb.fuse > interval2 && TGM.ig.bomb.fuse <= interval1) {
+						setTimeout(function() {
+							TGM.ig.bomb.tick();
+						}, 500);
+					}
+					else if (TGM.ig.bomb.fuse > interval3 && TGM.ig.bomb.fuse <= interval2) {
+						for (i = 1; i < 4; i++) {
+							setTimeout(function() {
+								TGM.ig.bomb.tick();
+							}, 250 * i);
+						}
+					}
+					else if (TGM.ig.bomb.fuse > interval4 && TGM.ig.bomb.fuse <= interval3) {
+						for (i = 1; i < 8; i++) {
+							setTimeout(function() {
+								TGM.ig.bomb.tick();
+							}, 125 * i);
+						}
+					}
+					else if (TGM.ig.bomb.fuse <= interval4 && TGM.ig.bomb.fuse >= 1) {
+						for (i = 1; i < 16; i++) {
+							setTimeout(function() {
+								TGM.ig.bomb.tick();
+							}, 62.5 * i);
+						}
+					}
+					else if (TGM.ig.bomb.fuse < 1) {
+						TGM.ig.bomb.detonate();
+					}
+					TGM.ig.bomb.fuse--;
+					console.log(TGM.ig.bomb.fuse);
 				}),
 				fuse: TGM.cg.bomb_timedet,
 				startAction: function(team) {
 					console.log('start-action: ' + team);
-					TGM.ig.bomb.actionProgress[1] = team;
-					TGM.ig.bomb.actionProgress[2] = 'start';
-					TGM.ig.bomb.actionTimer.set({
+					this.actionProgress[1] = team;
+					this.actionProgress[2] = 'start';
+					this.actionTimer.set({
 						time: 100, // 100 stutter, 10 smooth
 						autostart: true
 					});
-					if (TGM.ig.bomb.state == 'ready') { displayBombStatus('arming') }
-					else if (TGM.ig.bomb.state == 'armed') { displayBombStatus('disarming') }
+					if (this.state == 'ready') { displayBombStatus('arming') }
+					else if (this.state == 'armed') { displayBombStatus('disarming') }
 				},
-				stopAction: function(team) {
+				stopAction: function() {
 					console.log('stop-action');
 					TGM.ig.bomb.actionProgress[2] = 'stop';
 				},
 				arm: function(team) {
 					console.log('armed ' + team);
-					TGM.ig.bomb.setState('armed');
-					TGM.ig.bomb.team = team;
-					TGM.ig.bomb.fuse = TGM.cg.bomb_timedet;
+					this.setState('armed');
+					displayBombStatus('armed');
+					this.team = team;
+					this.fuse = TGM.cg.bomb_timedet;
+					this.fuseTimer.set({
+						time: 1000,
+						autostart: true
+					});
+					$('.obj_action:not(.obj_action_neutral)').show();
+					$('#btn_obj_action_' + team + '_bomb').hide();
+					TGM.ig.incrementScore(team, 'bomb_arm');
 				},
 				disarm: function(team) {
 					console.log('disarmed ' + team);
-					TGM.ig.bomb.setState('disarmed');
-					TGM.ig.bomb.team = team;
+					this.setState('disarmed');
+					displayBombStatus('disarmed');
+					//TGM.ig.bomb.team = team;
+					this.fuseTimer.stop();
+					TGM.ig.incrementScore(team, 'bomb_disarm');
 				},
 				detonate: function() {
+					if (this.actionTimer.isActive) { this.actionTimer.stop(); }
+					if (this.fuseTimer.isActive) { this.fuseTimer.stop(); }
 					console.log('detonated');
-					TGM.ig.bomb.setState('detonated');
+					this.setState('detonated');
+					displayBombStatus('detonated');
+					this.fuseTimer.stop();
+					setTimeout(function() {
+						$('#prog_bomb').addClass('flash');
+					}, 51);
+					TGM.ig.incrementScore(TGM.ig.bomb.team, 'bomb_detonate');
 				},
 				setState: function(newState) {
-					console.log("set state of bomb objective to " + newState);
-					TGM.ig.bomb.state = newState;
+					console.log("set b-obj state to " + newState);
+					this.state = newState;
 					displayBombStatus(newState);
 				},
 				tick: function() {
-					console.log('tick'); // should flash and make beep sound
 					$('#prog_bomb').addClass('flash');
 					setTimeout(function() {
 						$('#prog_bomb').removeClass('flash');
-					}, 200);
+					}, 50);
 				},
 				reset: function() {
-					TGM.ig.bomb.team = objTeam;
-					TGM.ig.bomb.setState('ready');
+					if (this.actionTimer.isActive) { this.actionTimer.stop(); }
+					if (this.fuseTimer.isActive) { this.fuseTimer.stop(); }
+					this.team = objTeam;
+					this.setState('ready');
+					this.actionProgress = [0, 'neutral', 'waiting'];
+					this.fuse = TGM.cg.bomb_timedet;
+					$('#prog_bomb').removeClass('flash');
 				}
 			}
 			$('#bomb_display').append(TGM.templates.ctmpl_bomb_objective);

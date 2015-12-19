@@ -6,7 +6,7 @@ ToDos:
 Priority:
 - Outpost objective + pause functionality - DONE
 - Outpost capture Double-tap bug - Watching
-- Bomb objective + pause functionality - WIP
+- B-objective + pause functionality - WIP: play/pause/reset, timer extension
 - Outpost continuous button hold fix - Watching
 - Countoff
 - Audio
@@ -14,6 +14,6 @@ Priority:
 Extras:
 - UI enhancements: Shrink buttons, add colors, add icons
 - Code refactoring (logic, data, & performance)
-- New features/objectives
+- New features/objectives: CG Saves/Loads
 
 Vocabulary Revision:

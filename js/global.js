@@ -19,8 +19,13 @@ TGM = { // namespace
 					return 'red';
 				break;
 			}
-		}
+		}/*,
+		countoff_timer: {},
+		countoff_counter: 0
+
+		*/
 	},
+	//sg{}, // saved game
 	templates: {}, // Handlebars templates
 	text: { // Displayed text
 		stopped: "Ready to Start",
