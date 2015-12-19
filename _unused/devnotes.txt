@@ -6,7 +6,7 @@ ToDos:
 Priority:
 - Outpost objective + pause functionality - DONE
 - Outpost capture Double-tap bug - Watching
-- B-objective + pause functionality - WIP: play/pause/reset, timer extension
+- B-objective + pause functionality - WIP: Needs Testing & Ticking Timer Extension
 - Outpost continuous button hold fix - Watching
 - Countoff
 - Audio

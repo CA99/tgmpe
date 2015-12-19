@@ -39,8 +39,8 @@
 		<section id="create_game" class="full-row mid">
 			<form id="create_game_form">
 				<h2 class="section-header">Game Settings &nbsp;<i class="fa fa-chevron-down"></i></h2>
-				<p>This webapp is for running outpost, assault, and other objectives for Nerf, Airsoft, Paintball, or Water War games. Responsive layout, supports touch and keyboard/mouse, and requires an up-to-date browser.</p>
-				<p>Currently in development.</p>
+				<p>This webapp is for simulating outpost, assault, and/or other objectives for Nerf, Airsoft, Paintball, or Water War games. Supports most screen sizes, and supports touch and keyboard/mouse. Requires an up-to-date HTML5-compliant browser.</p>
+				<p>Currently in development. See the <a href="docs/index.html">documentation</a> for more.</p>
 				<label class="block-level">
 					<h5>Score Limit</h5>
 					<input type="number" min="1" value="1000" name="score_limit" id="score_limit" />
@@ -340,8 +340,8 @@
 				<label class="block-level">
 					<h5>Objective Type</h5>
 					<select name="obj_type" class="obj_type" id="obj_type">
-						<option value="outpost">Outpost</option>
-						<option value="bomb" selected>Bomb</option>
+						<option value="outpost" selected>Outpost</option>
+						<option value="bomb">Bomb</option>
 					</select>
 				</label>
 				<div class="block-level">
@@ -479,18 +479,18 @@
 	<h4 class="full-row">Bomb Settings</h4>
 	<label class="block-level">
 		<h5>Time to Plant (Seconds)</h5>
-		<input type="number" value="3" name="bomb_timearm" id="bomb_timearm" />
+		<input type="number" value="5" name="bomb_timearm" id="bomb_timearm" />
 	</label>
 	<label class="block-level">
 		<h5>Time to Diffuse (Seconds)</h5>
-		<input type="number" value="3" name="bomb_timediff" id="bomb_timediff" />
+		<input type="number" value="5" name="bomb_timediff" id="bomb_timediff" />
 	</label>
 	<label class="block-level">
 		<h5>Ticking Time (MM:SS)</h5>
 		<div class="time-display">
 			<select name="bomb_timedet_mins" id="bomb_timedet_mins">
-				<option value="00" selected>00</option>
-				<option value="01">01</option>
+				<option value="00">00</option>
+				<option value="01" selected>01</option>
 				<option value="02">02</option>
 				<option value="03">03</option>
 				<option value="04">04</option>
@@ -583,7 +583,7 @@
 				<option value="27">27</option>
 				<option value="28">28</option>
 				<option value="29">29</option>
-				<option value="30" selected>30</option>
+				<option value="30">30</option>
 				<option value="31">31</option>
 				<option value="32">32</option>
 				<option value="33">33</option>

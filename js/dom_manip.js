@@ -97,14 +97,14 @@ function renderObjSettings(type) {
 		/*var $allTeamsCtrl = $('#obj_teams_all').parent('label').parent('li');
 		$allTeamsCtrl.enable();
 		$allTeamsCtrl.show();*/
-		//$('#obj_teams_all').prop('checked',true);
+		$('#obj_teams_all').prop('checked',true);
 	}
 	else if (type == 'bomb') {
 		$('#bomb_settings').append(TGM.templates.ctmpl_bomb_settings);
 		/*var $allTeamsCtrl = $('#obj_teams_all').parent('label').parent('li');
 		$allTeamsCtrl.disable();
 		$allTeamsCtrl.hide();*/
-		//$('#obj_teams_blue').prop('checked',true);
+		$('#obj_teams_blue').prop('checked',true);
 	}
 	else {
 		console.warn('Could not render objective settings.');
