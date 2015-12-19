@@ -40,13 +40,13 @@
 			<form id="create_game_form">
 				<h2 class="section-header">Game Settings &nbsp;<i class="fa fa-chevron-down"></i></h2>
 				<p>This webapp is for simulating outpost, assault, and/or other objectives for Nerf, Airsoft, Paintball, or Water War games. Supports most screen sizes, and supports touch and keyboard/mouse. Requires an up-to-date HTML5-compliant browser.</p>
-				<p>Currently in development. See the <a href="docs/index.html">documentation</a> for more.</p>
+				<p>Currently in development. See the <a href="docs/">documentation</a> for more.</p>
 				<label class="block-level">
-					<h5>Score Limit</h5>
+					<h5>Score Limit (Points)</h5>
 					<input type="number" min="1" value="1000" name="score_limit" id="score_limit" />
 				</label>
-				<!--<label class="block-level">
-					<h5>Countoff</h5>
+				<label class="block-level">
+					<h5>Countdown (MM:SS)</h5>
 					<div class="time-display">
 						<select name="countoff_mins" id="countoff_mins">
 							<option value="0" selected>00</option>
@@ -176,7 +176,7 @@
 							<option value="59">59</option>
 						</select>
 					</div>
-				</label>-->
+				</label>
 				<label class="block-level">
 					<h5>Time Limit (HH:MM:SS)</h5>
 					<div class="time-display">
@@ -383,11 +383,6 @@
 			<h2 class="section-header">Game &nbsp;<i class="fa fa-chevron-down"></i></h2>
 			<article class="full-row mid-grid">
 				<div class="block-level">
-					<div class="prog-meter" id="status">Status</div>
-				</div>
-			</article>
-			<article class="full-row mid-grid">
-				<div class="block-level">
 					<div class="controls centered" id="game_controls">
 						<button class="button large" id="btn_back">
 							<i class="fa fa-chevron-left"></i>
@@ -402,6 +397,11 @@
 							<i class="fa fa-volume-off"></i>
 						</button>
 					</div>
+				</div>
+			</article>
+			<article class="full-row mid-grid">
+				<div class="block-level">
+					<div class="prog-meter" id="status">Status</div>
 				</div>
 			</article>
 			<article class="full-row mid-grid">

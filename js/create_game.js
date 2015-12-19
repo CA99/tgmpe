@@ -13,28 +13,21 @@ $(document).ready(function() {
 		event.preventDefault();
 		// process form data and make it usable for game
 		TGM.cg = $('#create_game_form').serializeObject();
-		TGM.cg.timelimit = (
-			parseInt(TGM.cg.timelimit_hrs)*3600 +
-			parseInt(TGM.cg.timelimit_mins)*60 +
-			parseInt(TGM.cg.timelimit_secs));
+		TGM.cg.timelimit = processTime(TGM.cg.timelimit_secs, TGM.cg.timelimit_mins, TGM.cg.timelimit_hrs);
 		delete TGM.cg.timelimit_hrs;
 		delete TGM.cg.timelimit_mins;
 		delete TGM.cg.timelimit_secs;
 
-		TGM.cg.countoff =
-			parseInt(TGM.cg.countoff_mins) * 60 +
-			parseInt(TGM.cg.countoff_secs);
+		TGM.cg.countoff = processTime(TGM.cg.countoff_secs, TGM.cg.countoff_mins);
 		delete TGM.cg.countoff_mins;
 		delete TGM.cg.countoff_secs;
 
-
 		if (TGM.cg.obj_type == 'bomb') {
-			TGM.cg.bomb_timedet =
-			parseInt(TGM.cg.bomb_timedet_mins) * 60 +
-			parseInt(TGM.cg.bomb_timedet_secs);
+			TGM.cg.bomb_timedet = processTime(TGM.cg.bomb_timedet_secs, TGM.cg.bomb_timedet_mins);
+			delete TGM.cg.bomb_timedet_mins;
+			delete TGM.cg.bomb_timedet_secs;
 		}
-		delete TGM.cg.bomb_timedet_mins;
-		delete TGM.cg.bomb_timedet_secs;
+
 
 		// Render bomb or outpost objective in-game
 		$('.obj-display').children('*').remove();
@@ -293,6 +286,7 @@ $(document).ready(function() {
 					this.setState('ready');
 					this.actionProgress = [0, 'neutral', 'waiting'];
 					this.fuse = TGM.cg.bomb_timedet;
+					setProgressBar(0);
 					$('#prog_bomb').removeClass('flash');
 				}
 			}

@@ -3,6 +3,8 @@ TGM = { // namespace
 
 	ig: { // in-game
 		state: "stopped", //stopped, running, paused, ended
+		countdown: true,
+		countdown_count: 0,
 		timer: 0,
 		obj_timer: 0,
 		countoff: 0,

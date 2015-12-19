@@ -7,6 +7,7 @@ Priority:
 - Outpost objective + pause functionality - DONE
 - Outpost capture Double-tap bug - Watching
 - B-objective + pause functionality - WIP: Needs Testing & Ticking Timer Extension
+- B-obj: Fix progress bar on TGM.ig.bomb.reset()
 - Outpost continuous button hold fix - Watching
 - Countoff
 - Audio
@@ -17,3 +18,10 @@ Extras:
 - New features/objectives: CG Saves/Loads
 
 Vocabulary Revision:
+
+Hooks for adding new objectives:
+- CG form
+- IG UI
+- Play/Pause/Stop/Reset functions
+- Dox
+- 

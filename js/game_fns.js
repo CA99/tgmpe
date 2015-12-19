@@ -93,6 +93,8 @@ TGM.ig.endGame = function() {
 	TGM.ig.state = 'ended';
 	if (objKeyTest('TGM.ig.timer')) { TGM.ig.timer.stop(); }
 	if (objKeyTest('TGM.ig.outpost.scoreTimer')) { TGM.ig.outpost.scoreTimer.stop(); }
+	if (objKeyTest('TGM.ig.bomb.actionTimer')) { TGM.ig.bomb.actionTimer.stop(); }
+	if (objKeyTest('TGM.ig.bomb.fuseTimer')) { TGM.ig.bomb.fuseTimer.pause(); }
 	if (TGM.ig.score.sum() == 0) {
 		$('#status').text(TGM.text.ended);
 	}
