@@ -5,7 +5,7 @@ $(document).ready(function() {
 
 	$('#btn_play_pause').click(function() {
 		if (TGM.ig.state == 'stopped') {
-			TGM.ig.startGame();
+			TGM.ig.countoff();
 		}
 		else if (TGM.ig.state == 'paused') {
 			TGM.ig.resumeGame();
@@ -15,7 +15,7 @@ $(document).ready(function() {
 		}
 		else if (TGM.ig.state == 'ended') {
 			TGM.ig.stopGame();
-			TGM.ig.startGame();
+			TGM.ig.countoff();
 		}
 		$('#btn_play_pause').displayPlayPause();
 

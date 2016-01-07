@@ -1,3 +1,13 @@
+TGM.ig.countoff = function() {
+	$('#status').text(TGM.text.countoff +
+		numeral(parseInt(TGM.ig.countoff_counter))
+		.format('00:00'));
+	this.countoff_timer.set({
+		time: 1000,
+		autostart: true
+	});
+}
+
 TGM.ig.startGame = function() {
 	TGM.ig.time = TGM.cg.timelimit;
 	TGM.ig.timer = $.timer(function() {
@@ -18,6 +28,7 @@ TGM.ig.startGame = function() {
 
 	if (objKeyTest('TGM.ig.outpost')) { TGM.ig.outpost.setOwner(TGM.cg.outpost_start_team); }
 	$('.button.obj_action').enable();
+	$('#btn_play_pause').displayPlayPause();
 }
 
 TGM.ig.stopGame = function() {
@@ -45,6 +56,8 @@ TGM.ig.stopGame = function() {
 	$('.button.obj_action').disable();
 	$('#btn_play_pause').enable();
 	$('.button.obj_action').prop('resumeEnable', false);
+	TGM.ig.countoff_counter = TGM.cg.countoff;
+	if (TGM.ig.countoff_timer.isActive) { TGM.ig.countoff_timer.stop(); }
 }
 
 TGM.ig.resumeGame = function() {

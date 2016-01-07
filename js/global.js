@@ -3,11 +3,21 @@ TGM = { // namespace
 
 	ig: { // in-game
 		state: "stopped", //stopped, running, paused, ended
-		countdown: true,
-		countdown_count: 0,
+		countoff_counter: 0,
+		countoff_timer: $.timer(function() {
+			if (TGM.ig.countoff_counter > 0) {
+				TGM.ig.countoff_counter--;
+				$('#status').text(TGM.text.countoff +
+					numeral(parseInt(TGM.ig.countoff_counter))
+					.format('00:00'));
+			}
+			else {
+				TGM.ig.countoff_timer.stop();
+				TGM.ig.startGame();
+			}
+		}),
 		timer: 0,
 		obj_timer: 0,
-		countoff: 0,
 		startGame: "",
 		score: [0, 0], // Red, Blue, Green, Yellow (only red/blue currently implemented)
 		//outpost: {},
@@ -31,6 +41,7 @@ TGM = { // namespace
 	templates: {}, // Handlebars templates
 	text: { // Displayed text
 		stopped: "Ready to Start",
+		countoff: "Game starts in ",
 		running: "Game in Progress",
 		paused: "Game Paused",
 		ended: "Game Over",

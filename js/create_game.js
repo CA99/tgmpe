@@ -182,30 +182,27 @@ $(document).ready(function() {
 				}),
 				fuseTimer: $.timer(function() {
 					TGM.ig.bomb.tick();
-					var interval1 = 30;
-					var interval2 = 15;
-					var interval3 = 5;
-					var interval4 = 3;
-					if (TGM.ig.bomb.fuse > interval2 && TGM.ig.bomb.fuse <= interval1) {
+					var interval = [30,15,5,3];
+					if (TGM.ig.bomb.fuse > interval[1] && TGM.ig.bomb.fuse <= interval[0]) {
 						setTimeout(function() {
 							TGM.ig.bomb.tick();
 						}, 500);
 					}
-					else if (TGM.ig.bomb.fuse > interval3 && TGM.ig.bomb.fuse <= interval2) {
+					else if (TGM.ig.bomb.fuse > interval[2] && TGM.ig.bomb.fuse <= interval[1]) {
 						for (i = 1; i < 4; i++) {
 							setTimeout(function() {
 								TGM.ig.bomb.tick();
 							}, 250 * i);
 						}
 					}
-					else if (TGM.ig.bomb.fuse > interval4 && TGM.ig.bomb.fuse <= interval3) {
+					else if (TGM.ig.bomb.fuse > interval[3] && TGM.ig.bomb.fuse <= interval[2]) {
 						for (i = 1; i < 8; i++) {
 							setTimeout(function() {
 								TGM.ig.bomb.tick();
 							}, 125 * i);
 						}
 					}
-					else if (TGM.ig.bomb.fuse <= interval4 && TGM.ig.bomb.fuse >= 1) {
+					else if (TGM.ig.bomb.fuse <= interval[3] && TGM.ig.bomb.fuse >= 1) {
 						for (i = 1; i < 16; i++) {
 							setTimeout(function() {
 								TGM.ig.bomb.tick();
