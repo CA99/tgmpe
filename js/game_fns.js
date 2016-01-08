@@ -10,15 +10,7 @@ TGM.ig.countoff = function() {
 
 TGM.ig.startGame = function() {
 	TGM.ig.time = TGM.cg.timelimit;
-	TGM.ig.timer = $.timer(function() {
-		if (TGM.ig.time > 0) {
-			TGM.ig.time--;
-			$('.time-ticker').text(numeral(TGM.ig.time).format('00:00:00'));
-		}
-		else {
-			TGM.ig.endGame();
-		}
-	});
+
 
 	TGM.ig.timer.set({
 		time: 1000,
@@ -103,6 +95,7 @@ TGM.ig.pauseGame = function() {
 }
 
 TGM.ig.endGame = function() {
+	TGM.ig.pauseGame();
 	TGM.ig.state = 'ended';
 	if (objKeyTest('TGM.ig.timer')) { TGM.ig.timer.stop(); }
 	if (objKeyTest('TGM.ig.outpost.scoreTimer')) { TGM.ig.outpost.scoreTimer.stop(); }
@@ -132,6 +125,10 @@ TGM.ig.endGame = function() {
 	$('.button.obj_action').disable();
 	$('#btn_play_pause').disable();
 	$('.button.obj_action').prop('resumeEnable', false);
+	/*if (objKeyTest('TGM.ig.bomb')) {
+		actionButtonLabel('Arm', 'Action');
+		actionButtonLabel('Disarm', 'Action');
+	}*/
 }
 
 TGM.ig.incrementScore = function(team, type) {

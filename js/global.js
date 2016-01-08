@@ -31,11 +31,8 @@ TGM = { // namespace
 					return 'red';
 				break;
 			}
-		}/*,
-		countoff_timer: {},
-		countoff_counter: 0
-
-		*/
+		},
+		overtime: false,
 	},
 	//sg{}, // saved game
 	templates: {}, // Handlebars templates
@@ -53,6 +50,29 @@ TGM = { // namespace
 		disarmed_bomb: "Bomb Has Been Diffused",
 		arming_bomb: "Planting...",
 		disarming_bomb: "Diffusing...",
-		detonated_bomb: "Bomb Detonated"
+		detonated_bomb: "Bomb Detonated",
 	}
 }
+
+TGM.ig.timer = $.timer(function() {
+	if (TGM.ig.time > 0) {
+		TGM.ig.time--;
+		$('.time-ticker').text(numeral(TGM.ig.time).format('00:00:00'));
+	}
+	else {
+		var objExtendTimer = false;
+		if (objKeyTest('TGM.ig.bomb') && TGM.cg.bomb_extends_timer) {
+			if (TGM.ig.bomb.state == "armed") {
+				objExtendTimer = true;
+			}
+		}
+		if (objExtendTimer == false) {
+			TGM.ig.endGame();
+		}
+		else {
+			TGM.ig.timer.stop();
+			TGM.ig.overtime = true;
+		}
+
+	}
+});

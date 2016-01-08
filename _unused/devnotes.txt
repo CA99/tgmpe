@@ -2,12 +2,21 @@ Server:
 npm install -g http-server
 http-server -c-1
 
+Bugs:
+- 1: Outpost to Assault (Currently non-fatal):
+ > Start new outpost game.
+ > Start outpost capture. Revert to Create Game before objective meter resets.
+ > Switch to assault game. Press GO.
+ > Initiation to game creates JS error: Uncaught TypeError: Cannot read property 'actionProgress' of undefined -- create_game.js:63
+
+
 ToDos:
 Priority:
 - Outpost capture Double-tap bug - Watching
 - Outpost continuous button hold fix - Watching
-- B-Obj Ticking Timer Extension
-- Countoff - WIP
+- Label action buttons for Assault game - WIP - Check game_fns.js:1280 and create_game.js: 247. Use actionButtonLabel(string1, string2) defined in dom_manip.js:52
+- B-Obj Ticking Timer Extension - Done, Needs Testing
+- Countoff - Done, Needs Testing
 - B-Obj Needs Testing
 - Audio - Watching
 
@@ -24,3 +33,20 @@ Hooks for adding new objectives:
 - Play/Pause/Stop/Reset functions
 - Dox
 -
+
+
+clipboard snippets:
+var objExtendTimer = false;
+if (objKeyTest('TGM.ig.bomb') && TGM.cg.bomb_extends_timer) {
+	if (TGM.ig.bomb.state == "armed") {
+		objExtendTimer = true;
+	}
+}
+if (objExtendTimer == false) {
+	TGM.ig.countoff_timer.stop();
+	TGM.ig.startGame();
+}
+else {
+	TGM.ig.countoff_timer.stop(); // WIP Here!
+	TGM.ig.startGame();
+}

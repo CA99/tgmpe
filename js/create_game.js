@@ -33,7 +33,7 @@ $(document).ready(function() {
 		$('.obj-display').children('*').remove();
 		TGM.ig.stopGame();
 		if (TGM.cg.obj_type == 'outpost') {
-			if (TGM.ig.bomb) { delete TGM.ig.bomb; }
+			if (objKeyTest('TGM.ig.bomb')) { delete TGM.ig.bomb; }
 			TGM.ig.outpost = {
 				owner: TGM.cg.outpost_start_team,
 				actionProgress: [0, 'neutral'], // State of outpost: [Progress, Team Contesting]
@@ -129,7 +129,7 @@ $(document).ready(function() {
 			setOutpostControls();
 		}
 		else if (TGM.cg.obj_type == 'bomb') {
-			if (TGM.ig.outpost) { delete TGM.ig.outpost; }
+			if (objKeyTest('TGM.ig.outpost')) { delete TGM.ig.outpost; }
 			var objTeam = 'neutral';
 			if (TGM.cg.obj_teams_blue) { objTeam = 'blue' }
 			else if (TGM.cg.obj_teams_red) { objTeam = 'red' }
@@ -244,14 +244,16 @@ $(document).ready(function() {
 					$('.obj_action:not(.obj_action_neutral)').show();
 					$('#btn_obj_action_' + team + '_bomb').hide();
 					TGM.ig.incrementScore(team, 'bomb_arm');
+					//actionButtonLabel('Arm', 'Disarm');
 				},
 				disarm: function(team) {
 					console.log('disarmed ' + team);
 					this.setState('disarmed');
 					displayBombStatus('disarmed');
-					//TGM.ig.bomb.team = team;
 					this.fuseTimer.stop();
 					TGM.ig.incrementScore(team, 'bomb_disarm');
+					if (TGM.ig.overtime == true) { TGM.ig.endGame(); }
+					//if (TGM.cg.bomb_use_once) { actionButtonLabel('Disarm', 'Arm') };
 				},
 				detonate: function() {
 					if (this.actionTimer.isActive) { this.actionTimer.stop(); }
@@ -264,6 +266,7 @@ $(document).ready(function() {
 						$('#prog_bomb').addClass('flash');
 					}, 51);
 					TGM.ig.incrementScore(TGM.ig.bomb.team, 'bomb_detonate');
+					if (TGM.ig.overtime == true) { TGM.ig.endGame(); }
 				},
 				setState: function(newState) {
 					console.log("set b-obj state to " + newState);

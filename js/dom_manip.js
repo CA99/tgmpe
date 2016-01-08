@@ -49,6 +49,12 @@ $.fn.displayPlayPause = function() {
 	}
 }
 
+function actionButtonLabel(s1, s2) {
+	$('.obj_action').each(function() {
+		$(this).text($(this).text().replace(s1, s2));
+	});
+}
+
 function displayOutpostStatus(owner) {
 	switch (owner) {
 		case 'neutral':
