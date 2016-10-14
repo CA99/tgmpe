@@ -244,7 +244,7 @@ $(document).ready(function() {
 					$('.obj_action:not(.obj_action_neutral)').show();
 					$('#btn_obj_action_' + team + '_bomb').hide();
 					TGM.ig.incrementScore(team, 'bomb_arm');
-					//actionButtonLabel('Arm', 'Disarm');
+					actionButtonLabel('Disarm');
 				},
 				disarm: function(team) {
 					console.log('disarmed ' + team);
@@ -253,7 +253,7 @@ $(document).ready(function() {
 					this.fuseTimer.stop();
 					TGM.ig.incrementScore(team, 'bomb_disarm');
 					if (TGM.ig.overtime == true) { TGM.ig.endGame(); }
-					//if (TGM.cg.bomb_use_once) { actionButtonLabel('Disarm', 'Arm') };
+					actionButtonLabel('Arm');
 				},
 				detonate: function() {
 					if (this.actionTimer.isActive) { this.actionTimer.stop(); }

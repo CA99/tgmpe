@@ -11,7 +11,7 @@
 	<meta http-equiv="pragma" content="no-cache" />
 	<meta name="robots" content="noindex, nofollow" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
-	<link rel="shortcut icon" href="favicon.ico" />
+	<link rel="icon" href="favicon.ico" />
 	<link rel="stylesheet" href="lib/foundation-6/css/foundation.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/styles.css" />
 	<script type="text/javascript" src="lib/jquery-1.11.3.min.js"></script>
@@ -340,6 +340,7 @@
 				<label class="block-level">
 					<h5>Objective Type</h5>
 					<select name="obj_type" class="obj_type" id="obj_type">
+						<option value="timer-only">None (Timer Only)</option>
 						<option value="outpost" selected>Outpost</option>
 						<option value="bomb">Bomb</option>
 					</select>
@@ -631,13 +632,13 @@
 	</label>
 	<div class="full-row">
 		<ul>
-			<li><label class="block-level">
+			<!--<li><label class="block-level">
 				<input type="checkbox"
 				name="bomb_use_once"
 				id="bomb_use_once"
 				class="" />
 				<strong>&nbsp;Can Only Use Once</strong>
-			</label></li>
+			</label></li>-->
 			<li><label class="block-level">
 				<input type="checkbox" checked
 				name="bomb_extends_timer"
@@ -672,8 +673,8 @@
 		</div>
 		<div class="centered">
 			<div class="centered obj-controls">
-				<button class="button large obj_action obj_action_red obj_action_bomb" id="btn_obj_action_red_bomb">Red Team Action</button>
-				<button class="button large obj_action obj_action_blue obj_action_bomb" id="btn_obj_action_blue_bomb">Blue Team Action</button>
+				<button class="button large obj_action obj_action_red obj_action_bomb" id="btn_obj_action_red_bomb">Red Team <span class="obj_action_verb">Action</span></button>
+				<button class="button large obj_action obj_action_blue obj_action_bomb" id="btn_obj_action_blue_bomb">Blue Team <span class="obj_action_verb">Action</span></button>
 				<!--<button class="button large obj_action obj_action_neutral obj_action_bomb" id="btn_obj_action_neutral_bomb">Neutral Action</button>-->
 			</div>
 		</div>

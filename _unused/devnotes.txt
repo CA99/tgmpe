@@ -19,11 +19,12 @@ Priority:
 - Countoff - Done, Needs Testing
 - B-Obj Needs Testing
 - Audio - Watching
+- Update Docs for new CG bomb functionality
 
 Extras:
 - UI enhancements: Shrink buttons, add colors, add icons
 - Code refactoring (logic, data, & performance)
-- New features/objectives: CG Saves/Loads
+- New features/objectives: CG Saves/Loads, king of the hill timer
 
 Vocabulary Revision:
 
