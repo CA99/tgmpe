@@ -27,7 +27,7 @@
 
 
 html {
-	font-size: 14px;
+	font-size: 18px;
 }
 
 body {
@@ -108,7 +108,7 @@ ul li {
 }
 
 .full-row select, .full-row input {
-	max-width: 350px;
+	max-width: 200px;
 	min-width: 45px;
 }
 

@@ -13,19 +13,20 @@ $(document).ready(function() {
 		event.preventDefault();
 		// process form data and make it usable for game
 		TGM.cg = $('#create_game_form').serializeObject();
+		//TGM.saveToURL(TGM.cg);
 		TGM.cg.timelimit = processTime(TGM.cg.timelimit_secs, TGM.cg.timelimit_mins, TGM.cg.timelimit_hrs);
-		delete TGM.cg.timelimit_hrs;
-		delete TGM.cg.timelimit_mins;
-		delete TGM.cg.timelimit_secs;
+		//delete TGM.cg.timelimit_hrs;
+		//delete TGM.cg.timelimit_mins;
+		//delete TGM.cg.timelimit_secs;
 
 		TGM.cg.countoff = processTime(TGM.cg.countoff_secs, TGM.cg.countoff_mins);
-		delete TGM.cg.countoff_mins;
-		delete TGM.cg.countoff_secs;
+		//delete TGM.cg.countoff_mins;
+		//delete TGM.cg.countoff_secs;
 
 		if (TGM.cg.obj_type == 'bomb') {
 			TGM.cg.bomb_timedet = processTime(TGM.cg.bomb_timedet_secs, TGM.cg.bomb_timedet_mins);
-			delete TGM.cg.bomb_timedet_mins;
-			delete TGM.cg.bomb_timedet_secs;
+			//delete TGM.cg.bomb_timedet_mins;
+			//delete TGM.cg.bomb_timedet_secs;
 		}
 
 
@@ -129,6 +130,7 @@ $(document).ready(function() {
 			setOutpostControls();
 		}
 		else if (TGM.cg.obj_type == 'bomb') {
+
 			if (objKeyTest('TGM.ig.outpost')) { delete TGM.ig.outpost; }
 			var objTeam = 'neutral';
 			if (TGM.cg.obj_teams_blue) { objTeam = 'blue' }
@@ -159,7 +161,7 @@ $(document).ready(function() {
 								}
 								else if (TGM.ig.bomb.state == 'armed') {
 									TGM.ig.bomb.disarm(TGM.ig.getOpposingTeam(TGM.ig.bomb.team));
-									displayBombStatus('disarmed')
+									displayBombStatus('disarmed');
 								}
 								TGM.ig.bomb.actionTimer.stop();
 								TGM.ig.bomb.actionProgress = [0, 'neutral', 'waiting'];
@@ -182,7 +184,7 @@ $(document).ready(function() {
 				}),
 				fuseTimer: $.timer(function() {
 					TGM.ig.bomb.tick();
-					var interval = [30,15,5,3];
+					var interval = [30,15,5,3]; // timer intervals for faster ticking; todo: refactor as a constant somewhere, including the new timings.
 					if (TGM.ig.bomb.fuse > interval[1] && TGM.ig.bomb.fuse <= interval[0]) {
 						setTimeout(function() {
 							TGM.ig.bomb.tick();
@@ -300,7 +302,6 @@ $(document).ready(function() {
 		}
 
 		// reset data
-
 
 		// set to in-game display
 		toggleSectionHeader();

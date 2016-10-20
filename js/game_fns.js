@@ -175,3 +175,13 @@ TGM.ig.resetScore = function() {
 	}
 	$('.score-display').text('0');
 }
+
+TGM.saveToURL = function(obj) {
+	var urlString = LZString.compressToEncodedURIComponent(JSON.stringify(obj));
+	window.location.hash = urlString;
+}
+
+TGM.loadFromURL = function() {
+	var urlString = LZString.decompressFromEncodedURIComponent(window.location.hash.substring(1));
+	return JSON.parse(urlString);
+}

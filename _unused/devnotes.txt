@@ -8,7 +8,7 @@ Bugs:
  > Start outpost capture. Revert to Create Game before objective meter resets.
  > Switch to assault game. Press GO.
  > Initiation to game creates JS error: Uncaught TypeError: Cannot read property 'actionProgress' of undefined -- create_game.js:63
-
+ > Off-by-one errors on countoff and game timers.
 
 ToDos:
 Priority:
@@ -24,9 +24,13 @@ Priority:
 Extras:
 - UI enhancements: Shrink buttons, add colors, add icons
 - Code refactoring (logic, data, & performance)
-- New features/objectives: CG Saves/Loads, king of the hill timer
+- New features/objectives: CG Querystrings, load cg obj to form
 
 Vocabulary Revision:
+
+New Names:
+Warden
+
 
 Hooks for adding new objectives:
 - CG form

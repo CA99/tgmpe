@@ -21,6 +21,7 @@
 	<script type="text/javascript" src="lib/knockout-3.3.0.js"></script>-->
 	<script type="text/javascript" src="lib/handlebars-v4.0.4.min.js"></script>
 	<script type="text/javascript" src="lib/numeral.min.js"></script>
+	<script type="text/javascript" src="lib/lz-string.min.js"></script>
 	<script type="text/javascript" src="lib/jquery.timer.js"></script>
 	<script type="text/javascript" src="js/helpers.js"></script>
 	<script type="text/javascript" src="js/global.js"></script>
@@ -38,7 +39,7 @@
 		<h1 class="message">Javascript loading or failed to load. This page requires Javascript to be enabled and may not support all browsers.</h1>
 		<section id="create_game" class="full-row mid">
 			<form id="create_game_form">
-				<h2 class="section-header">Game Settings &nbsp;<i class="fa fa-chevron-down"></i></h2>
+				<h2 class="section-header">Setup &nbsp;<i class="fa fa-chevron-down"></i></h2>
 				<p>This webapp is for simulating outpost, assault, and/or other objectives for Nerf, Airsoft, Paintball, or Water War games. Supports most screen sizes, and supports touch and keyboard/mouse. Requires an up-to-date HTML5-compliant browser.</p>
 				<p>Currently in development. See the <a href="docs/">documentation</a> for more.</p>
 				<label class="block-level">
@@ -381,7 +382,7 @@
 		</section>
 
 		<section id="in_game" class="full-row">
-			<h2 class="section-header">Game &nbsp;<i class="fa fa-chevron-down"></i></h2>
+			<h2 class="section-header">Play &nbsp;<i class="fa fa-chevron-down"></i></h2>
 			<article class="full-row mid-grid">
 				<div class="block-level">
 					<div class="controls centered" id="game_controls">
@@ -396,6 +397,9 @@
 						</button>
 						<button class="button large disabled" disabled id="btn_audio">
 							<i class="fa fa-volume-off"></i>
+						</button>
+						<button class="button large disabled" disabled id="btn_share">
+							<i class="fa fa-share-alt"></i>
 						</button>
 					</div>
 				</div>
