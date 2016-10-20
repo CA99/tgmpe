@@ -23,6 +23,7 @@
 	<script type="text/javascript" src="lib/numeral.min.js"></script>
 	<script type="text/javascript" src="lib/lz-string.min.js"></script>
 	<script type="text/javascript" src="lib/jquery.timer.js"></script>
+	<script type="text/javascript" src="lib/jquery.populate.pack.js"></script>
 	<script type="text/javascript" src="js/helpers.js"></script>
 	<script type="text/javascript" src="js/global.js"></script>
 	<script type="text/javascript" src="js/dom_manip.js"></script>
@@ -346,35 +347,13 @@
 						<option value="bomb">Bomb</option>
 					</select>
 				</label>
-				<div class="block-level">
-					<h5>Usable By Teams</h5>
-					<ul>
-						<li>
-							<label>
-								<input type="radio" name="obj_teams" id="obj_teams_red" value="red" />
-								<strong>&nbsp;Red Team</strong>
-							</label>
-						</li>
-						<li>
-							<label>
-								<input type="radio" name="obj_teams" id="obj_teams_blue" value="blue" />
-								<strong>&nbsp;Blue Team</strong>
-							</label>
-						</li>
-						<li>
-							<label>
-								<input type="radio" name="obj_teams" id="obj_teams_all" value="all" checked />
-								<strong>&nbsp;All Teams</strong>
-							</label>
-						</li>
-					</ul>
-				</div>
 
 				<article class="full-row mid-grid obj-settings" id="outpost_settings">
 				</article>
 
 				<article class="full-row mid-grid obj-settings" id="bomb_settings">
 				</article>
+
 				<div class="full-row centered">
 					<button class="button large" id="start_game">GO!</button>
 				</div>
@@ -435,6 +414,29 @@
 
 <script id="tmpl_outpost_settings" type="text/x-handlebars-template">
 	<h4 class="full-row">Outpost Settings</h4>
+	<div class="block-level">
+		<h5>Usable By Teams</h5>
+		<ul>
+			<li>
+				<label>
+					<input type="radio" name="obj_teams" id="obj_teams_red" value="red" />
+					<strong>&nbsp;Red Team</strong>
+				</label>
+			</li>
+			<li>
+				<label>
+					<input type="radio" name="obj_teams" id="obj_teams_blue" value="blue" />
+					<strong>&nbsp;Blue Team</strong>
+				</label>
+			</li>
+			<li>
+				<label>
+					<input type="radio" name="obj_teams" id="obj_teams_all" value="all" checked />
+					<strong>&nbsp;All Teams</strong>
+				</label>
+			</li>
+		</ul>
+	</div>
 	<label class="block-level">
 		<h5>Starting Team</h5>
 		<select name="outpost_start_team" id="outpost_start_team">
@@ -482,6 +484,29 @@
 
 <script id="tmpl_bomb_settings" type="text/x-handlebars-template">
 	<h4 class="full-row">Bomb Settings</h4>
+	<div class="block-level">
+		<h5>Usable By Teams</h5>
+		<ul>
+			<li>
+				<label>
+					<input type="radio" name="obj_teams" id="obj_teams_red" value="red" />
+					<strong>&nbsp;Red Team</strong>
+				</label>
+			</li>
+			<li>
+				<label>
+					<input type="radio" name="obj_teams" id="obj_teams_blue" value="blue" />
+					<strong>&nbsp;Blue Team</strong>
+				</label>
+			</li>
+			<li>
+				<label>
+					<input type="radio" name="obj_teams" id="obj_teams_all" value="all" checked />
+					<strong>&nbsp;All Teams</strong>
+				</label>
+			</li>
+		</ul>
+	</div>
 	<label class="block-level">
 		<h5>Time to Plant (Seconds)</h5>
 		<input type="number" value="5" name="bomb_timearm" id="bomb_timearm" />

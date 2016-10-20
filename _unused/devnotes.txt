@@ -8,7 +8,8 @@ Bugs:
  > Start outpost capture. Revert to Create Game before objective meter resets.
  > Switch to assault game. Press GO.
  > Initiation to game creates JS error: Uncaught TypeError: Cannot read property 'actionProgress' of undefined -- create_game.js:63
- > Off-by-one errors on countoff and game timers.
+
+ - 2: Off-by-one errors on countoff and game timers. Timers need to end when reaches 0, not -1.
 
 ToDos:
 Priority:

@@ -13,7 +13,7 @@ $(document).ready(function() {
 		event.preventDefault();
 		// process form data and make it usable for game
 		TGM.cg = $('#create_game_form').serializeObject();
-		//TGM.saveToURL(TGM.cg);
+		TGM.saveToURL(TGM.cg);
 		TGM.cg.timelimit = processTime(TGM.cg.timelimit_secs, TGM.cg.timelimit_mins, TGM.cg.timelimit_hrs);
 		//delete TGM.cg.timelimit_hrs;
 		//delete TGM.cg.timelimit_mins;
@@ -306,4 +306,5 @@ $(document).ready(function() {
 		// set to in-game display
 		toggleSectionHeader();
 	});
+	popForm();
 });

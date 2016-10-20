@@ -98,7 +98,8 @@ function setProgressBar(percentage) {
 
 function renderObjSettings(type) {
 	$('.obj-settings').children('*').remove();
-	if (type == 'outpost') {
+	if (type == 'timer-only') {}
+	else if (type == 'outpost') {
 		$('#outpost_settings').append(TGM.templates.ctmpl_outpost_settings);
 		/*var $allTeamsCtrl = $('#obj_teams_all').parent('label').parent('li');
 		$allTeamsCtrl.enable();
@@ -114,5 +115,14 @@ function renderObjSettings(type) {
 	}
 	else {
 		console.warn('Could not render objective settings.');
+	}
+}
+
+function popForm() {
+	if (TGM.loadFromURL() != null) {
+		var obj = TGM.loadFromURL(TGM.cg);
+		var type = obj.obj_type;
+		renderObjSettings(type);
+		$('#create_game_form').populate(obj);
 	}
 }
