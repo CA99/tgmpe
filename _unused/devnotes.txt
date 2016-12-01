@@ -11,6 +11,8 @@ Bugs:
 
  - 2: Off-by-one errors on countoff and game timers. Timers need to end when reaches 0, not -1.
 
+ - 3: Cross-server compatibility testing & bugs.
+
 ToDos:
 Priority:
 - Outpost capture Double-tap bug - Watching

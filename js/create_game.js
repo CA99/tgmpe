@@ -9,8 +9,8 @@ $(document).ready(function() {
 		renderObjSettings(type);
 	});
 
-	$('#start_game').click(function() {
-		event.preventDefault();
+	$('.start_game').click(function(e) {
+		e.preventDefault();
 		// process form data and make it usable for game
 		TGM.cg = $('#create_game_form').serializeObject();
 		TGM.saveToURL(TGM.cg);

@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>TGM Portable Edition</title>
+	<meta charset="UTF-8">
 	<meta http-equiv="cache-control" content="private">
 	<meta http-equiv="cache-control" content="max-age=0" />
 	<meta http-equiv="cache-control" content="no-cache" />
@@ -41,8 +42,12 @@
 		<section id="create_game" class="full-row mid">
 			<form id="create_game_form">
 				<h2 class="section-header">Setup &nbsp;<i class="fa fa-chevron-down"></i></h2>
-				<p>This webapp is for simulating outpost, assault, and/or other objectives for Nerf, Airsoft, Paintball, or Water War games. Supports most screen sizes, and supports touch and keyboard/mouse. Requires an up-to-date HTML5-compliant browser.</p>
-				<p>Currently in development. See the <a href="docs/">documentation</a> for more.</p>
+				<p>This webapp is for simulating outpost, diffuse, and/or other objectives for Nerf, Airsoft, Paintball, or Water War games.</p>
+					<p>Supports most screen sizes, and supports touch and keyboard/mouse. Requires an up-to-date HTML5-compliant browser.</p>
+				<p><a href="docs/">Documentation</a></p>
+				<div class="full-row">
+					<button class="button large start_game">Start Game</button>
+				</div>
 				<label class="block-level">
 					<h5>Score Limit (Points)</h5>
 					<input type="number" min="1" value="1000" name="score_limit" id="score_limit" />
@@ -355,7 +360,7 @@
 				</article>
 
 				<div class="full-row centered">
-					<button class="button large" id="start_game">GO!</button>
+					<button class="button large start_game">Start Game</button>
 				</div>
 			</form>
 		</section>
